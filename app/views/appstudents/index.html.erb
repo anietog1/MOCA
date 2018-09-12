@@ -1,0 +1,20 @@
+<h1>Students requests</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Code</th>
+
+    <th></th>
+  </tr>
+
+  <% @students.each do |student| %>
+  <tr>
+    <td><%= student.first_name %></td>
+    <td><%= student.university_code %></td>
+    <td><%= link_to 'View to validate', appstudent_path(student) %></td>
+  </tr>
+  <% end %>
+  <%= link_to 'Back', applications_path %>
+</table>
+

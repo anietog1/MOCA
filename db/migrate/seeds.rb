@@ -1,11 +1,4 @@
 # coding: utf-8
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 student_list = [
   [ "Kevin", "Arley", "Parra", "Henao", "201710093010", "kaparrah", "316891432" "True", "True" ],
   [ "Agustín", "", "Nieto", "García", "201710094010", "anietog1", "31789132432", "True", "False" ],

@@ -1,0 +1,18 @@
+class AppstudentsController < ApplicationController
+	def index
+    @students = Student.all
+  end
+	def show
+  @student = Student.find(params[:id])
+        end
+
+        def update
+          @post.published_at = Time.zone.now if publishing?
+          @post.published_at = nil if unpublishing?
+          #Rest of code
+        end
+        #Some more code
+        def unpublishing?
+          params[:commit] == "Unpublish"
+        end 
+end
