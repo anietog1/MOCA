@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  student: one
+  term: one
+  is_valid: false
+
+two:
+  student: two
+  term: two
+  is_valid: false

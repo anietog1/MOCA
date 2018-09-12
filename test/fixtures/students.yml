@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  first_name: MyString
+  middle_name: MyString
+  first_surname: MyString
+  second_surname: MyString
+  university_code: MyString
+  university_username: MyString
+  mobile_phone: MyString
+  is_advisor: false
+  is_valid: false
+
+two:
+  first_name: MyString
+  middle_name: MyString
+  first_surname: MyString
+  second_surname: MyString
+  university_code: MyString
+  university_username: MyString
+  mobile_phone: MyString
+  is_advisor: false
+  is_valid: false
