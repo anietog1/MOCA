@@ -1,0 +1,47 @@
+<%= form_with(model: advisor, local: true) do |form| %>
+  <% if advisor.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(advisor.errors.count, "error") %> prohibited this advisor from being saved:</h2>
+
+      <ul>
+      <% advisor.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :student_university_code, "University code" %>
+    <%= form.text_field :student_university_code %>
+  </div>
+
+  <div class="field">
+    <%= form.label :term_id %>
+    <%= form.collection_select :term_id, Term.all, :id, :name, prompt: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :subject1_id %>
+    <%= form.collection_select :subject1_id, Subject.all, :id, :name, prompt: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :subject2_id %>
+    <%= form.collection_select :subject2_id, Subject.all, :id, :name, prompt: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :subject3_id %>
+    <%= form.collection_select :subject3_id, Subject.all, :id, :name, prompt: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :subject4_id %>
+    <%= form.collection_select :subject4_id, Subject.all, :id, :name, prompt: true %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
