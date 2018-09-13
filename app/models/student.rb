@@ -1,5 +1,6 @@
 class Student < ApplicationRecord
   has_many :advisors
+  has_many :student_has_undergraduates
   has_many :undergraduates, through: :student_has_undergraduates
 
   validates :first_name, presence: true

@@ -37,5 +37,13 @@
   <strong>Is advisor:</strong>
   <%= @student.is_advisor %>
 </p>
- 
-<%= link_to 'Back', appstudents_path %>
+
+<p>
+  <!-- Se puede pluralizating-->
+  <strong>Pregrado(s):</strong><br>
+  <% @student.undergraduates.each do |under| %>
+  <%= under.name %><br>
+  <% end %>
+</p>
+  </p><%= link_to 'Back', appstudents_path %>
+<%= link_to 'Validate', validating_path(@student) %>
