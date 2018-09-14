@@ -1,0 +1,20 @@
+<p>
+  <strong>Student code:</strong>
+  <%= @advisor.student.university_code %>
+</p>
+
+<p>
+  <strong>Student username:</strong>
+  <%= @advisor.student.university_username %>
+</p>
+
+<p>
+  <strong>Subjects:</strong>
+  <% @advisor.subjects.each do |subject| %>
+    <%= subject.name %>
+  <% end %>
+</p>
+
+<%= link_to 'Accept', applications_advisor_accept_path(@advisor) %>
+<%= link_to 'Reject', applications_advisor_reject_path(@advisor) %>
+<%= link_to 'Back', applications_advisors_path %>
