@@ -13,7 +13,7 @@ class Applications::AdvisorsController < ApplicationController
     @advisor.save
 
     respond_to do |format|
-      format.html { redirect_to applications_advisors_url, notice: 'Advisor was successfully validated.' }
+      format.html { redirect_to applications_advisors_url, notice: 'Advisor was successfully accepted.' }
     end
   end
 

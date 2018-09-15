@@ -45,5 +45,9 @@
   <%= under.name %><br>
   <% end %>
 </p>
-  </p><%= link_to 'Back', appstudents_path %>
-<%= link_to 'Validate', validating_path(@student) %>
+
+<br>
+
+<%= link_to 'Accept', applications_student_accept_path(@student) %>
+<%= link_to 'Reject', applications_student_reject_path(@student) %>
+<%= link_to 'Back', applications_students_path %>
