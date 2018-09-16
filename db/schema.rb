@@ -106,12 +106,6 @@ ActiveRecord::Schema.define(version: 2018_09_16_180500) do
     t.index ["name"], name: "index_subjects_on_name", unique: true
   end
 
-  create_table "temps", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "terms", force: :cascade do |t|
     t.string "name", null: false
     t.date "start_date", null: false
