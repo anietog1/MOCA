@@ -10,7 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_12_040328) do
+ActiveRecord::Schema.define(version: 2018_09_16_180500) do
+
+  create_table "advices", force: :cascade do |t|
+    t.integer "advisor_has_session_id", null: false
+    t.integer "student_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["advisor_has_session_id"], name: "index_advices_on_advisor_has_session_id"
+    t.index ["student_id"], name: "index_advices_on_student_id"
+  end
+
+  create_table "advisor_has_sessions", force: :cascade do |t|
+    t.integer "advisor_id", null: false
+    t.integer "day_has_hour_id", null: false
+    t.integer "term_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["advisor_id"], name: "index_advisor_has_sessions_on_advisor_id"
+    t.index ["day_has_hour_id"], name: "index_advisor_has_sessions_on_day_has_hour_id"
+    t.index ["term_id"], name: "index_advisor_has_sessions_on_term_id"
+  end
 
   create_table "advisor_has_subjects", force: :cascade do |t|
     t.integer "advisor_id", null: false
@@ -29,6 +49,29 @@ ActiveRecord::Schema.define(version: 2018_09_12_040328) do
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_advisors_on_student_id"
     t.index ["term_id"], name: "index_advisors_on_term_id"
+  end
+
+  create_table "day_has_hours", force: :cascade do |t|
+    t.integer "day_id", null: false
+    t.integer "hour_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["day_id"], name: "index_day_has_hours_on_day_id"
+    t.index ["hour_id"], name: "index_day_has_hours_on_hour_id"
+  end
+
+  create_table "days", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_days_on_name", unique: true
+  end
+
+  create_table "hours", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_hours_on_name", unique: true
   end
 
   create_table "student_has_undergraduates", force: :cascade do |t|
@@ -61,6 +104,12 @@ ActiveRecord::Schema.define(version: 2018_09_12_040328) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_subjects_on_name", unique: true
+  end
+
+  create_table "temps", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "terms", force: :cascade do |t|
