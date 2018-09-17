@@ -6,11 +6,42 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+days_list = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
+
+days_list.each do |day|
+  Day.create(name: day)
+end
+
+hours_list = (7..19).map { |num| num.to_s + ":00" }
+
+hours_list.each do |hour|
+  Hour.create(name: hour)
+end
+
+day_has_hours_list = ((1..days_list.size).map { |day_id| ([day_id] * hours_list.size).zip(1..hours_list.size) }).flatten 1
+
+day_has_hours_list.each do |day_id, hour_id|
+  DayHasHour.create(day_id: day_id, hour_id: hour_id)
+end
+
 students_list = [
-  ['Kevin', 'Arley', 'Parra', 'Henao', '201710093010', 'kaparrah', '316891432' 'True', 'True'],
-  ['Agustín', '', 'Nieto', 'García', '201710094010', 'anietog1', '31789132432', 'True', 'False'],
-  ['Kevyn', 'Santiago', 'Alzate', 'Rodriguez', '201710095011', 'kevyng', '3178913242', 'False', 'True'],
-  ['Sebastian', '', 'Perez', 'Restrepo', '201710096010', 'anietog1', '31789132432', 'False', 'False']
+  ['Kevin', 'Arley', 'Parra', 'Henao', '201710093010', 'kaparrah', '316891432', true, true],
+  ['Agustín', nil, 'Nieto', 'García', '201710094010', 'anietog1', '31789132432', true, true],
+  ['Kevyn', 'Santiago', 'Alzate', 'Rodriguez', '201710095011', 'kevyng', '3178913242', false, true],
+  ['Sebastian', nil, 'Perez', 'Restrepo', '201710096010', 'sebjaj', '31789132432', false, nil],
+  ['Leo', nil, 'Perez', 'Restrepo', '20170096010', 'leprs', '31896132432', false, false],
+  ['Mateo', nil, 'Perez', 'Restrepo', '20110096010', 'maprs', '37891632432', false, true],
+  ['Alexis', nil, 'Perez', 'Restrepo', '01096010', 'alprs', '31389132432', false, nil],
+  ['Patata', nil, 'Perez', 'Restrepo', '2171006010', 'patprs', '29616324362', false, true],
+  ['Peludo', nil, 'Perez', 'Restrepo', '2071096010', 'pelprs', '37896366432', false, nil],
+  ['Parroco', nil, 'Perez', 'Restrepo', '20170096010', 'parprs', '37591324632', false, true],
+  ['Aleta', nil, 'Perez', 'Restrepo', '2017096010', 'aleeeprs', '37491632432', false, true],
+  ['Esqueleto', nil, 'Perez', 'Restrepo', '210096010', 'esqprs', '37816632432', false, nil],
+  ['Azulejo', nil, 'Perez', 'Restrepo', '2010096010', 'azprs', '37896232432', false, nil],
+  ['Siemens', nil, 'Perez', 'Restrepo', '21096010', 'siprs', '37895632432', false, true],
+  ['Torre', nil, 'Perez', 'Restrepo', '2076010', 'torprs', '31789134432', false, false],
+  ['Sara', nil, 'Perez', 'Restrepo', '201096010', 'saraprs', '31789133431', false, true]
 ]
 
 students_list.each do |first_name, middle_name, first_surname, second_surname, university_code, university_username, mobile_phone, is_advisor, is_valid|
@@ -18,13 +49,26 @@ students_list.each do |first_name, middle_name, first_surname, second_surname, u
 end
 
 subjects_list = [
-  'Calculo',
+  'Calculo I',
+  'Calculo II',
+  'Calculo III',
+  'Fisica I',
+  'Fisica II',
   'Logica',
-  'Fundamentos de programación'
+  'Fundamentos de programacion',
+  'Fisica I',
+  'Algebra lineal',
+  'Ingenieria de software',
+  'Proyecto integrador',
+  'Analisis textual',
+  'Practicas textuales',
+  'Estadistica',
+  'Quimica inorganica',
+  'Quimica organica',
 ]
 
 subjects_list.each do |name|
-  Subject.create(name: name.first)
+  Subject.create(name: name)
 end
 
 terms_list = [
@@ -70,9 +114,15 @@ hours_list.each do |name|
 end
 
 undergraduates_list = [
-  'Ingeniería de sistemas',
-  'Ingeniería matemática',
-  'Administración'
+  'Ingenieria de sistemas',
+  'Ingenieria matematica',
+  'Administracion',
+  'Ingenieria fisica',
+  'Geologia',
+  'Biologia',
+  'Economia',
+  'Ingenieria mecanica',
+  'Ingenieria civil'
 ]
 
 undergraduates_list.each do |name|
