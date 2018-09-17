@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'sessions/index'
+  get 'sessions/create'
+  get 'sessions/edit'
+  root 'welcome#index'
   resources :advisors
   resources :undergraduates
   resources :subjects

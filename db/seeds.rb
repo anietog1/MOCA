@@ -38,6 +38,37 @@ terms_list.each do |name, start_date, end_date|
   Term.create(name: name, start_date: start_date, end_date: end_date)
 end
 
+days_list = [
+  'Lunes',
+  'Martes',
+  'Miércoles',
+  'Jueves',
+  'Viernes'
+]
+
+days_list.each do |name|
+  Day.create(name: name)
+end
+# Las monitorías son hasta las 6 pm?
+hours_list = [
+  '07:00 AM' ,
+  '08:00 AM' ,
+  '09:00 AM' ,
+  '10:00 AM' ,
+  '11:00 AM' ,
+  '12:00 PM' ,
+  '01:00 PM' ,
+  '02:00 PM' ,
+  '03:00 PM' ,
+  '04:00 PM' ,
+  '05:00 PM' ,
+  '06:00 PM' ,
+]
+
+hours_list.each do |name|
+  Hour.create(name: name)
+end
+
 undergraduates_list = [
   'Ingeniería de sistemas',
   'Ingeniería matemática',

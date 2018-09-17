@@ -1,0 +1,20 @@
+<h1>Horario</h1>
+<div class="schedule-div">
+<table class="schedule">
+  <thead>
+    <tr>
+      <th>Hora</th>
+      <% @days.each do |day| %>
+      <th><%= day.name %></th>
+      <% end %>
+    </tr>
+      <% @hours.each do |hour| %>
+    <tr>
+      <th><%= hour.name %></th>
+      <% 5.times do %>
+      <th>x</th>
+      <% end %>
+    </tr>
+    <% end %>
+  </thead>
+</div>
