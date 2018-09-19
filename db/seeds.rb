@@ -7,11 +7,18 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-days_list = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
+days_list = [
+  'Lunes',
+  'Martes',
+  'Miércoles',
+  'Jueves',
+  'Viernes'
+]
 
-days_list.each do |day|
-  Day.create(name: day)
+days_list.each do |name|
+  Day.create(name: name)
 end
+
 
 hours_list = (7..19).map { |num| num.to_s + ":00" }
 
@@ -48,6 +55,9 @@ students_list.each do |first_name, middle_name, first_surname, second_surname, u
   Student.create(first_name: first_name, middle_name: middle_name, first_surname: first_surname, second_surname: second_surname, university_code: university_code, university_username: university_username, mobile_phone: mobile_phone, is_advisor: is_advisor, is_valid: is_valid)
 end
 
+advisors_list = Student.where(is_advisor: true)
+
+
 subjects_list = [
   'Calculo I',
   'Calculo II',
@@ -80,37 +90,6 @@ terms_list = [
 
 terms_list.each do |name, start_date, end_date|
   Term.create(name: name, start_date: start_date, end_date: end_date)
-end
-
-days_list = [
-  'Lunes',
-  'Martes',
-  'Miércoles',
-  'Jueves',
-  'Viernes'
-]
-
-days_list.each do |name|
-  Day.create(name: name)
-end
-# Las monitorías son hasta las 6 pm?
-hours_list = [
-  '07:00 AM' ,
-  '08:00 AM' ,
-  '09:00 AM' ,
-  '10:00 AM' ,
-  '11:00 AM' ,
-  '12:00 PM' ,
-  '01:00 PM' ,
-  '02:00 PM' ,
-  '03:00 PM' ,
-  '04:00 PM' ,
-  '05:00 PM' ,
-  '06:00 PM' ,
-]
-
-hours_list.each do |name|
-  Hour.create(name: name)
 end
 
 undergraduates_list = [

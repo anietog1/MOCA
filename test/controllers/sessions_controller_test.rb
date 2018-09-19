@@ -1,8 +1,8 @@
 require 'test_helper'
 
 class SessionsControllerTest < ActionDispatch::IntegrationTest
-  test "should get index" do
-    get sessions_index_url
+  test "should get show_creating" do
+    get sessions_show_creating_url
     assert_response :success
   end
 

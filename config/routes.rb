@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
-  get 'sessions/index'
-  get 'sessions/create'
   get 'sessions/edit'
+  get 'sessions/index/:id', to: 'sessions#index', as: 'sessions_index'
+  get 'sessions/create/:id', to: 'sessions#create',  as: 'sessions_create'
+  get 'sessions/show_creating/:id', to: 'sessions#show_creating', as: 'sessions_show'
   root 'welcome#index'
-  resources :advisors
+  resources :advisors do
+    resources :advisor_has_sessions
+  end
   resources :undergraduates
   resources :subjects
   resources :terms

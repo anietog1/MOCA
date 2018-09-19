@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_16_180500) do
+ActiveRecord::Schema.define(version: 2018_09_19_220525) do
 
   create_table "advices", force: :cascade do |t|
     t.integer "advisor_has_session_id", null: false
@@ -72,6 +72,19 @@ ActiveRecord::Schema.define(version: 2018_09_16_180500) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_hours_on_name", unique: true
+  end
+
+  create_table "people", force: :cascade do |t|
+    t.boolean "gay"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "personas", force: :cascade do |t|
+    t.boolean "student"
+    t.boolean "worker"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "student_has_undergraduates", force: :cascade do |t|
