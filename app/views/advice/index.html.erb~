@@ -1,0 +1,30 @@
+<%= form_with(model:session , local: true) do |form| %>
+<div class="field">
+  <%= form.label :Term %>
+  <%= form.text_field :term_id %>
+</div>
+
+<div class="field">
+  <%= form.label :Day %>
+  <%= form.text_field :day_id %>
+</div>
+
+<div class="field">
+  <%= form.label :Hour %>
+  <%= form.text_field :hour:id %>
+</div>
+
+<div class="field">
+  <%= form.label :Advisor code %>
+  <%= form.text_field :advisor_id %>
+</div>
+
+<div class="field">
+  <%= form.label :Student code %>
+  <%= form.text_field :student_id %>
+</div>
+
+<div class="actions">
+  <%= form.submit %>
+</div>
+<% end %>
