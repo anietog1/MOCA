@@ -16,12 +16,13 @@ class SessionsController < ApplicationController
     # Get student data
     @student = Student.find(@advisor.student_id)
     @sessions = @advisor.advisor_has_sessions
-    tag_ids = params.permit({ :tag_ids => [] })[:tag_ids]
-    tag_ids.each do |session|
+    tag_ids = params.permit(:tag_ids)[:tag_ids]
+    tag_ids.each { |session|
       if session == true
         sessions.create(advisor_id: @advisor.id, day_has_hour_id: session )
+    
       end
-    end
+    }
   end
 
   def edit
