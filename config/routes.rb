@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :advice
+  resources :advices
   resources :advisors
   resources :undergraduates
   resources :subjects
@@ -15,5 +15,5 @@ Rails.application.routes.draw do
     resources :advisors, only: [:index, :show]
     get 'advisors/accept/:id', to: 'advisors#accept', as: 'advisor_accept'
     get 'advisors/reject/:id', to: 'advisors#reject', as: 'advisor_reject'
-  end
+end
 end
