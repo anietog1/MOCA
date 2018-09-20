@@ -14,7 +14,8 @@ class AdvicesController < ApplicationController
   end
 
   private
-  def article_params
-    params.require(:session).permit(:term_id, :day_id, :hour_id, :advisor_id, :student_id)
+  def session_params
+    params.require(:session)
+      .permit(:term_id, :day_id, :hour_id, :advisor_id, :student_id)
   end
 end

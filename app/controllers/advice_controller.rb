@@ -1,2 +1,0 @@
-class AdviceController < ApplicationController
-end

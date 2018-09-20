@@ -1,34 +1,5 @@
-<%= form_for :advice do |form| %>
-<div class="field">
-  <%= form.label :Term %>
-  <%= form.collection_select :term_id, Term.all, :id, :name, prompt: true %>
+<h1>New advice</h1>
 
-</div>
+<%= render 'form', session: @session %>
 
-<div class="field">
-  <%= form.label :Day %>
-  <%= form.collection_select :day_id, Day.all, :id, :name, prompt: true %>
-</div>
-
-<div class="field">
-  <%= form.label :Hour %>
-  <%= form.collection_select :hour_id, Hour.all, :id, :name, prompt: true %>
-
-</div>
-
-<div class="field">
-  <%= form.label :advisor_code %>
-  <%= form.collection_select :advisor_id, Advisor.all, :id, :id, prompt: true %>
-
-</div>
-
-<div class="field">
-  <%= form.label :student_code %>
-   <%= form.text_field :student_id %>
- 
-</div>
-
-<div class="actions">
-  <%= form.submit %>
-</div>
-<% end %>
+<%= link_to 'Back', advices_path %>
