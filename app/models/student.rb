@@ -1,8 +1,11 @@
 class Student < ApplicationRecord
   has_many :advisors
+
   has_many :student_has_undergraduates
   has_many :undergraduates, through: :student_has_undergraduates
-  has_many :advices
+
+  has_many :session_has_students
+  has_many :sessions, through: :session_has_students
 
   validates :first_name, presence: true
   validates :first_surname, presence: true
@@ -11,6 +14,7 @@ class Student < ApplicationRecord
   validates :mobile_phone, presence: true
 
   def full_name
-    [first_name, middle_name, first_surname, second_surname].reject(&:empty?).join(' ')
+    [first_name, middle_name, first_surname, second_surname]
+      .compact.reject(&:nil?).join(' ')
   end
 end

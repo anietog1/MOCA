@@ -1,18 +1,22 @@
 Rails.application.routes.draw do
-  get 'sessions/edit'
-  get 'sessions/index/:id', to: 'sessions#index', as: 'sessions_index'
-  get 'sessions/create/:id', to: 'sessions#create',  as: 'sessions_create'
-  get 'sessions/show_creating/:id', to: 'sessions#show_creating', as: 'sessions_show'
   root 'welcome#index'
-  resources :advisors do
-    resources :advisor_has_sessions
-  end
-  resources :undergraduates
-  resources :subjects
+
   resources :terms
+  resources :subjects
+  resources :undergraduates
+
   resources :students
 
+  resources :sessions, only: [:index, :new, :create]
+
+  resources :advisors do
+    resources :sessions, only: [:index, :new, :create]
+  end
+
+  resources :advices
+
   resources :applications, only: [:index]
+
   namespace :applications do
     resources :students, only: [:index, :show]
     get 'students/accept/:id', to: 'students#accept', as: 'student_accept'
