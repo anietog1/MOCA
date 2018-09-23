@@ -1,4 +1,4 @@
-class SessionsController < ApplicationController
+class SchedulesController < ApplicationController
   def index
     @advisor = Advisor.find(params.permit(:advisor_id)[:advisor_id])
   end

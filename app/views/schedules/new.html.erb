@@ -1,4 +1,4 @@
-<h1>Horario</h1>
+<h1>Registro de horario</h1>
 
 <div class="schedule-div">
   <table class="schedule">
@@ -15,10 +15,13 @@
       <tr>
         <th><%= hour.name %></th>
         <% Day.all.each do |day|%>
-          <th>
-            <%= 'x' if Session.where(advisor_id: @advisor.id, day_has_hour_id: DayHasHour.where(day_id: day.id, hour_id: hour.id).first.id).any? %>
-          </th>
+          <td><%= check_box_tag :unused_symbol %></td>
         <% end %>
       </tr>
     <% end %>
+  </table>
 </div>
+
+<br>
+
+<%= link_to 'Back', advisor_schedules_path(@advisor) %>

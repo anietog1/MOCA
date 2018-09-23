@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:index, :new, :create]
 
   resources :advisors do
-    resources :sessions, only: [:index, :new, :create]
+    resources :schedules, only: [:index, :new, :create]
   end
 
   resources :advices
