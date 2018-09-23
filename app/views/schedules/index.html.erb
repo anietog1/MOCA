@@ -15,7 +15,7 @@
       <tr>
         <th><%= hour.name %></th>
         <% Day.all.each do |day|%>
-          <td><%= 'x' if @advisor.sessions.where(day_has_hour_id: DayHasHour.where(day_id: day.id, hour_id: hour.id).first.id).any? %></td>
+          <td><%= 'x' if @advisor.sessions.where(day_has_hour_id: DayHasHour.find_by(day: day, hour: hour)).any? %></td>
         <% end %>
       </tr>
     <% end %>
