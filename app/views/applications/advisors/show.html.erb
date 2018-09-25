@@ -1,20 +1,22 @@
 <p>
+  <strong>Term:</strong>
+  <%= @advisor.term.name %>
+</p>
+
+<p>
   <strong>Student code:</strong>
   <%= @advisor.student.university_code %>
 </p>
 
 <p>
-  <strong>Student username:</strong>
-  <%= @advisor.student.university_username %>
-</p>
-
-<p>
-  <strong>Subjects:</strong>
+  <strong><%= "Subject".pluralize(@advisor.subjects.size) << ":" %></strong>
   <% @advisor.subjects.each do |subject| %>
-    <%= subject.name %>
+    <br><%= subject.name %>
   <% end %>
 </p>
 
-<%= link_to 'Accept', applications_advisor_accept_path(@advisor) %>
-<%= link_to 'Reject', applications_advisor_reject_path(@advisor) %>
+<br>
+
+<%= link_to 'Accept', applications_advisor_accept_url(@advisor), method: :post %>
+<%= link_to 'Reject', applications_advisor_reject_url(@advisor), method: :post %>
 <%= link_to 'Back', applications_advisors_path %>
