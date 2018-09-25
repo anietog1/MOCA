@@ -1,5 +1,5 @@
 class SchedulesController < ApplicationController
-  def index
+  def show
     @advisor = Advisor.find(params.permit(:advisor_id)[:advisor_id])
   end
 
@@ -18,7 +18,7 @@ class SchedulesController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { redirect_to advisor_schedules_url(@advisor),
+      format.html { redirect_to advisor_schedule_url(@advisor),
                     notice: 'Schedule was successfully saved.' }
     end
   end
