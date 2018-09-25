@@ -9,7 +9,7 @@
 </p>
 
 <p>
-  <strong><%= "Subject".pluralize(@advisor.subjects.size) << ":" %></strong>
+  <strong><%= "Subject".pluralize(@advisor.subjects.size) + ":" %></strong>
   <% @advisor.subjects.each do |subject| %>
     <br><%= subject.name %>
   <% end %>

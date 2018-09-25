@@ -34,7 +34,7 @@
 </p>
 
 <p>
-  <strong><%= "Undergraduate".pluralize(@student.undergraduates.size) << ":" %></strong>
+  <strong><%= "Undergraduate".pluralize(@student.undergraduates.size) + ":" %></strong>
   <% @student.undergraduates.each do |undergraduate| %>
     <br><%= undergraduate.name %>
   <% end %>
