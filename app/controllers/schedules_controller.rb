@@ -1,25 +1,37 @@
 class SchedulesController < ApplicationController
+  before_action :set_advisor, only: [:show, :new, :create]
+
   def show
-    @advisor = Advisor.find(params.permit(:advisor_id)[:advisor_id])
   end
 
   def new
-    @advisor = Advisor.find(params.permit(:advisor_id)[:advisor_id])
   end
 
   def create
-    @advisor = Advisor.find(params.permit(:advisor_id)[:advisor_id])
-    sessions = params.require(:sessions).permit!
-
-    sessions.each do |day_has_hour_id, available|
-      if available == "1"
-        @advisor.sessions.create(day_has_hour_id: day_has_hour_id, term_id: 1)
+    sessions_params.each do |day_has_hour_id, is_available|
+      if is_available == "1"
+        @advisor.sessions.create(day_has_hour_id: day_has_hour_id, term_id: @advisor.term_id)
       end
     end
 
     respond_to do |format|
-      format.html { redirect_to advisor_schedule_url(@advisor),
-                    notice: 'Schedule was successfully saved.' }
+      format.html {
+        redirect_to advisor_schedule_url(@advisor),
+        notice: 'Schedule was successfully saved.'
+      }
     end
+  end
+
+  private
+  def set_advisor
+    @advisor = Advisor.find_by(advisor_params)
+  end
+
+  def advisor_params
+    { id: params.permit(:advisor_id)[:advisor_id] }
+  end
+
+  def sessions_params
+    params.require(:sessions).permit!
   end
 end
