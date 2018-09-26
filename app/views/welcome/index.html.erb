@@ -1,22 +1,19 @@
-<body id="bod">
-  <div id="login">
-    <div id="fields" >
-      <h1>Bienvenido a MOCA</h1>
-      <% 8.times do %>
-      <br>
-      <% end %>
-      <br>
-      <h3>Página de administradores</h3>
-      <br>
-      <%= button_to 'Estudiantes', students_path, method: 'get' %>
-      <br>
-      <%= button_to 'Monitores', advisors_path, method: 'get' %>
-      <br>
-      <%= button_to 'Materias', subjects_path, method: 'get' %>
-      <br>
-      <%= button_to 'Periodos', terms_path, method: 'get' %>
-      <br>
-      <%= button_to 'Pregrados', undergraduates_path, method: 'get' %>
-      </div>
-  </div>
-</body>
+<div id="fields" >
+  <h1>Bienvenido a MOCA</h1>
+  <% 7.times do %>
+  <br>
+  <% end %>
+  <br>
+  <h3>Página de administradores</h3>
+  <br>
+  <%= button_to 'Estudiantes', students_path, method: 'get' %>
+  <br>
+  <%= button_to 'Monitores', advisors_path, method: 'get' %>
+  <br>
+  <%= button_to 'Materias', subjects_path, method: 'get' %>
+  <br>
+  <%= button_to 'Periodos', terms_path, method: 'get' %>
+  <br>
+  <%= button_to 'Pregrados', undergraduates_path, method: 'get' %>
+</div>
+
