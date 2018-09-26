@@ -5,11 +5,18 @@
       <% 8.times do %>
       <br>
       <% end %>
-      <h3>¿Desea inscribirte a nuestra plataforma?</h3>
-      <%= button_to 'Registrarse', new_student_path, method: 'get' %>
       <br>
-      <h3>¿Ya estás inscrito?</h3>
-      <%= button_to 'Ingresar', students_path, method: 'get' %>
-    </div>
+      <h3>Página de administradores</h3>
+      <br>
+      <%= button_to 'Estudiantes', students_path, method: 'get' %>
+      <br>
+      <%= button_to 'Monitores', advisors_path, method: 'get' %>
+      <br>
+      <%= button_to 'Materias', subjects_path, method: 'get' %>
+      <br>
+      <%= button_to 'Periodos', terms_path, method: 'get' %>
+      <br>
+      <%= button_to 'Pregrados', undergraduates_path, method: 'get' %>
+      </div>
   </div>
 </body>
