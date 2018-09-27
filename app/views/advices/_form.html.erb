@@ -1,42 +1,30 @@
-<%= form_with(model: session) do |form| %>
-  <% if session.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(session.errors.count, "error") %> prohibited this session from being saved:</h2>
-
-      <ul>
-        <% session.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<%= form_for :advice do |form| %>
   <div class="field">
-    <%= form.label :term_id %>
-    <%= form.collection_select :term_id, Term.all, :id, :name, prompt: true %>
+    <%= form.label :term_id, 'Periodo' %>
+    <%= form.collection_select :term_id, Term.all, :id, :name, prompt: 'Seleccionar' %>
   </div>
 
   <div class="field">
-    <%= form.label :day_id %>
-    <%= form.collection_select :day_id, Day.all, :id, :name, prompt: true %>
+    <%= form.label :day_id, 'Día' %>
+    <%= form.collection_select :day_id, Day.all, :id, :name, prompt: 'Seleccionar' %>
   </div>
 
   <div class="field">
-    <%= form.label :hour_id %>
-    <%= form.collection_select :hour_id, Hour.all, :id, :name, prompt: true %>
+    <%= form.label :hour_id, 'Hora' %>
+    <%= form.collection_select :hour_id, Hour.all, :id, :name, prompt: 'Seleccionar' %>
   </div>
 
   <div class="field">
-    <%= form.label :advisor_id %>
-    <%= form.collection_select :advisor_id, Advisor.all, :id, :id, prompt: true %>
+    <%= form.label :subject_id, 'Materia' %>
+    <%= form.collection_select :subject_id, Subject.all, :id, :name, prompt: 'Seleccionar' %>
   </div>
 
   <div class="field">
-    <%= form.label :student_id %>
-    <%= form.text_field :student_id %>
+    <%= form.label :student_university_code, 'Código del estudiante' %>
+    <%= form.text_field :student_university_code %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Enviar' %>
   </div>
 <% end %>
