@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  term: one
+  advisor: one
+  day_has_hour: one
+  subject: one
+
+two:
+  term: two
+  advisor: two
+  day_has_hour: two
+  subject: two

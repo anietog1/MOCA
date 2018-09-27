@@ -1,0 +1,31 @@
+// Place all the styles related to the Welcome controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.welcome {
+   // background-image: image-url("background.jpg");
+    background-repeat: no-repeat;
+     background: image-url("background.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+    
+    /**    #login {
+        width: 100%; 
+        min-height: 800px;
+        height: 100%;
+        background-image: image-url("background.jpg");
+        border: 1px solid black;
+    }
+  **/
+    #fields {
+        position: relative;
+        top: 100px;
+        margin: auto;
+        text-align: center;
+    }
+    h3 {
+        color: white;
+    }
+
+}

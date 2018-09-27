@@ -1,0 +1,18 @@
+// Place all the styles related to the Sessions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+/* Kevin: This is working for all vies becuase I didn't put .sessions.
+   I am pending to decide if we want all tables with that format.
+*/
+
+table, th, td {
+    border: 1px solid black;
+}
+//No se como es esto :v
+.schedule{
+    width: 80%;
+}
+
+.schedule-div{
+    align: right;
+}

@@ -1,0 +1,35 @@
+<h1>Registro de horario</h1>
+
+<%= form_for(:sessions, url: url_for(controller: "schedules", action: "create")) do |f| %>
+  <div class="schedule-div">
+    <table class="schedule">
+      <thead>
+        <tr>
+          <th>Hora</th>
+          <% Day.all.each do |day| %>
+            <th><%= day.name %></th>
+          <% end %>
+        </tr>
+      </thead>
+
+      <% Hour.all.each do |hour| %>
+        <tr>
+          <th><%= hour.name %></th>
+          <% Day.all.each do |day|%>
+            <div class="field">
+              <td><%= f.check_box "#{DayHasHour.find_by(day: day, hour: hour).id}" %></td>
+            </div>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+
+  <br>
+
+  <%= f.submit "Guardar Horario" %>
+<% end %>
+
+<br>
+
+<%= link_to 'Volver', advisor_schedule_path(@advisor) %>

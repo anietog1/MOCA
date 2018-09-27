@@ -1,0 +1,30 @@
+<%= form_for :advice do |form| %>
+  <div class="field">
+    <%= form.label :term_id, 'Periodo' %>
+    <%= form.collection_select :term_id, Term.all, :id, :name, prompt: 'Seleccionar' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :day_id, 'Día' %>
+    <%= form.collection_select :day_id, Day.all, :id, :name, prompt: 'Seleccionar' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hour_id, 'Hora' %>
+    <%= form.collection_select :hour_id, Hour.all, :id, :name, prompt: 'Seleccionar' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :subject_id, 'Materia' %>
+    <%= form.collection_select :subject_id, Subject.all, :id, :name, prompt: 'Seleccionar' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :student_university_code, 'Código del estudiante' %>
+    <%= form.text_field :student_university_code %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Enviar' %>
+  </div>
+<% end %>

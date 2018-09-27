@@ -1,0 +1,25 @@
+<h1>Horario</h1>
+<div class="schedule-div">
+  <table class="schedule">
+    <thead>
+      <tr>
+        <th>Hora</th>
+        <% @days.each do |day| %>
+          <th><%= day.name %></th>
+        <% end %>
+      </tr>
+    </thead>
+    <% i = 1 %>
+    <% @hours.each do |hour| %>
+    <tr>
+      <th><%= hour.name %></th>
+      <% @days.each do |day|%>
+      <% value = @sessions_show.find(i) %>
+      <td><input type="checkbox" name="tag_ids[]" value = <%= value.id if value %>/>
+        <%= value.id if value %></td>
+      <% i+=1 %>
+      <% end %>
+    </tr>
+    <% end %>
+    
+</div>
