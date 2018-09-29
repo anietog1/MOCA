@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th>Student username</th>
-      <th>Term</th>
+      <th>Semester</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,7 +15,7 @@
     <% @advisors.each do |advisor| %>
       <tr>
         <td><%= advisor.student.university_username %></td>
-        <td><%= advisor.term.name %></td>
+        <td><%= advisor.semester.name %></td>
         <td><%= link_to 'Show', advisor %></td>
         <td><%= link_to 'Edit', edit_advisor_path(advisor) %></td>
         <td><%= link_to 'Destroy', advisor, method: :delete, data: { confirm: 'Are you sure?' } %></td>

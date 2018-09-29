@@ -1,10 +1,10 @@
-<%= form_with(model: term, local: true) do |form| %>
-  <% if term.errors.any? %>
+<%= form_with(model: semester, local: true) do |form| %>
+  <% if semester.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(term.errors.count, "error") %> prohibited this term from being saved:</h2>
+      <h2><%= pluralize(semester.errors.count, "error") %> prohibited this semester from being saved:</h2>
 
       <ul>
-      <% term.errors.full_messages.each do |message| %>
+      <% semester.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>

@@ -1,6 +1,6 @@
 class Advisor < ApplicationRecord
   belongs_to :student
-  belongs_to :term
+  belongs_to :semester
 
   has_many :advisor_has_sessions
   has_many :advisor_has_subjects

@@ -24,12 +24,12 @@ class AdvicesController < ApplicationController
 
   private
   def session_params
-    temp = params.require(:advice).permit(:term_id, :day_id, :hour_id, :subject_id)
+    temp = params.require(:advice).permit(:semester_id, :day_id, :hour_id, :subject_id)
 
     {
-      term_id: temp[term_id],
+      semester_id: temp[semester_id],
       day_has_hour_id: DayHasHour.find_by(day_id: temp[:day_id], hour_id: temp[:hour_id]),
-      subject_id: temp[term_id]
+      subject_id: temp[semester_id]
     }
   end
 

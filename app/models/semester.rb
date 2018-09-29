@@ -1,4 +1,4 @@
-class Term < ApplicationRecord
+class Semester < ApplicationRecord
   has_many :advisors
   has_many :sessions
 

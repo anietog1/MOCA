@@ -89,15 +89,15 @@ end
 
 puts "[TERMS]"
 
-terms_list = [
+semesters_list = [
   ['2018-1', '2018-01-12', '2018-06-20'],
   ['2018-2', '2018-07-16', '2018-12-04'],
   ['2019-1', '2019-01-12', '2019-06-20'],
   ['2019-2', '2019-07-16', '2019-12-04']
 ]
 
-terms_list.each do |name, start_date, end_date|
-  Term.create(name: name, start_date: start_date, end_date: end_date)
+semesters_list.each do |name, start_date, end_date|
+  Semester.create(name: name, start_date: start_date, end_date: end_date)
 end
 
 puts "[UNDERGRADUATES]"
@@ -158,8 +158,8 @@ advisors_list = [
   [13, 2, true]
 ]
 
-advisors_list.each do |student, term, is_valid|
-  Advisor.create(student_id: student, term_id: term, is_valid: is_valid)
+advisors_list.each do |student, semester, is_valid|
+  Advisor.create(student_id: student, semester_id: semester, is_valid: is_valid)
 end
 
 puts "[ADVISOR_HAS_SUBJECTS]"
@@ -218,8 +218,8 @@ sessions_list = [
   [2, 9, 59, nil]
 ]
 
-sessions_list.each do |term, advisor, day_has_hour, subject|
-  Session.create!(term_id: term, advisor_id: advisor, day_has_hour_id: day_has_hour, subject_id: subject)
+sessions_list.each do |semester, advisor, day_has_hour, subject|
+  Session.create!(semester_id: semester, advisor_id: advisor, day_has_hour_id: day_has_hour, subject_id: subject)
 end
 
 puts "[SESSION_HAS_STUDENTS]"

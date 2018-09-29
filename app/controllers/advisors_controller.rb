@@ -75,13 +75,13 @@ class AdvisorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def form_params
-      params.require(:advisor).permit(:student_university_code, :term_id, :subject1_id, :subject2_id, :subject3_id, :subject4_id)
+      params.require(:advisor).permit(:student_university_code, :semester_id, :subject1_id, :subject2_id, :subject3_id, :subject4_id)
     end
 
     def advisor_params
       temp = form_params
       student = Student.where(university_code: temp[:student_university_code]).first
-      { student_id: student.id, term_id: temp[:term_id] }
+      { student_id: student.id, semester_id: temp[:semester_id] }
     end
 
     def subject_params

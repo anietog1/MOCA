@@ -10,7 +10,7 @@ class SchedulesController < ApplicationController
   def create
     sessions_params.each do |day_has_hour_id, is_available|
       if is_available == "1"
-        @advisor.sessions.create(day_has_hour_id: day_has_hour_id, term_id: @advisor.term_id)
+        @advisor.sessions.create(day_has_hour_id: day_has_hour_id, semester_id: @advisor.semester_id)
       end
     end
 
