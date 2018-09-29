@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  session_has_student: one
+  satisfaction: 1
+  contribution: 1
+  conditions: 1
+  domain: 1
+  clarity: 1
+  ability: 1
+  treat: 1
+  method: 1
+  fears: MyText
+  changes: MyText
+  comments: MyText
+
+two:
+  session_has_student: two
+  satisfaction: 1
+  contribution: 1
+  conditions: 1
+  domain: 1
+  clarity: 1
+  ability: 1
+  treat: 1
+  method: 1
+  fears: MyText
+  changes: MyText
+  comments: MyText
