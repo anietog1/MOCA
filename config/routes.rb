@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'students/accept'
   root 'welcome#index'
 
-  resources :terms
+  resources :semesters
   resources :subjects
   resources :undergraduates
 
