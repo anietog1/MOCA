@@ -158,8 +158,8 @@ advisors_list = [
   [13, 2, true]
 ]
 
-advisors_list.each do |student, term, is_valid|
-  Advisor.create(student_id: student, term_id: term, is_valid: is_valid)
+advisors_list.each do |student, semester, is_valid|
+  Advisor.create(student_id: student, semester_id: semester, is_valid: is_valid)
 end
 
 puts "[ADVISOR_HAS_SUBJECTS]"
@@ -218,8 +218,8 @@ sessions_list = [
   [2, 9, 59, nil]
 ]
 
-sessions_list.each do |term, advisor, day_has_hour, subject|
-  Session.create!(term_id: semester, advisor_id: advisor, day_has_hour_id: day_has_hour, subject_id: subject)
+sessions_list.each do |semester, advisor, day_has_hour, subject|
+  Session.create!(semester_id: semester, advisor_id: advisor, day_has_hour_id: day_has_hour, subject_id: subject)
 end
 
 puts "[SESSION_HAS_STUDENTS]"

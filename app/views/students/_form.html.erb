@@ -48,7 +48,7 @@
   
   <div class="field">
     <%= form.label :undergraduate_id %>
-    <%= form.collection_select :undergraduate_id, Undergraduate.all, :id, :name, prompt: true %>
+    <%= form.collection_select :undergraduate_id, Undergraduate.all, :id, :name, { :selected => @undergraduate }, prompt: true %>
   </div>
 
   <div class="actions">

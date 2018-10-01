@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'students/accept'
   root 'welcome#index'
 
   resources :terms
@@ -13,6 +14,7 @@ Rails.application.routes.draw do
     resource :schedule, only: [:show, :new, :create]
   end
 
+  
   resources :advices
 
   resources :applications, only: [:index]

@@ -1,47 +1,52 @@
-<p>
-  <strong>First name:</strong>
-  <%= @student.first_name %>
-</p>
+<% student = @student %>
+<%= form_for(student, url: applications_student_accept_path(student), html: {method: "post"}) do |form| %>
 
-<p>
-  <strong>Middle name:</strong>
-  <%= @student.middle_name %>
-</p>
+<div class="field">
+  <%= form.label :first_name %>
+  <%= form.text_field :first_name %>
+</div>
 
-<p>
-  <strong>First surname:</strong>
-  <%= @student.first_surname %>
-</p>
+<div class="field">
+  <%= form.label :middle_name %>
+  <%= form.text_field :middle_name %>
+</div>
 
-<p>
-  <strong>Second surname:</strong>
-  <%= @student.second_surname %>
-</p>
+<div class="field">
+  <%= form.label :first_surname %>
+  <%= form.text_field :first_surname %>
+</div>
 
-<p>
-  <strong>University:</strong>
-  <%= @student.university_code %>
-</p>
+<div class="field">
+  <%= form.label :second_surname %>
+  <%= form.text_field :second_surname %>
+</div>
 
-<p>
-  <strong>University username:</strong>
-  <%= @student.university_username %>
-</p>
+<div class="field">
+  <%= form.label :university_code %>
+  <%= form.text_field :university_code %>
+</div>
 
-<p>
-  <strong>Mobile phone:</strong>
-  <%= @student.mobile_phone %>
-</p>
+<div class="field">
+  <%= form.label :university_username %>
+  <%= form.text_field :university_username %>
+</div>
 
-<p>
-  <strong><%= "Undergraduate".pluralize(@student.undergraduates.size) + ":" %></strong>
-  <% @student.undergraduates.each do |undergraduate| %>
-    <br><%= undergraduate.name %>
-  <% end %>
-</p>
+<div class="field">
+  <%= form.label :mobile_phone %>
+  <%= form.text_field :mobile_phone %>
+</div>
 
+<div class="field">
+  <%= form.label :undergraduate_id %>
+  <%= form.collection_select :undergraduate_id, Undergraduate.all, :id, :name, { :selected => @undergraduate },  prompt: true %>
+</div>
+
+
+<div class="actions">
+  <%= form.submit("Acept") %>
+</div>
+<% end %>
 <br>
+  <%= button_to 'Reject', applications_student_reject_url(@student), method: :post %>
 
-<%= link_to 'Accept', applications_student_accept_url(@student), method: :post %>
-<%= link_to 'Reject', applications_student_reject_url(@student), method: :post %>
 <%= link_to 'Back', applications_students_path %>
