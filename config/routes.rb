@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   resources :terms
-  resources :subjects
+  resources :semesters
   resources :undergraduates
+  resources :subjects
 
   resources :students
 
@@ -14,6 +15,7 @@ Rails.application.routes.draw do
   end
 
   resources :advices
+  resources :surveys
 
   resources :applications, only: [:index]
 

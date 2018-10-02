@@ -1,0 +1,77 @@
+<%= form_with(model: survey, local: true) do |form| %>
+  <% if survey.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(survey.errors.count, "error") %> prohibited this survey from being saved:</h2>
+
+      <ul>
+      <% survey.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :session_has_student_id %>
+    <%= form.text_field :session_has_student_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :satisfaction %>
+    <%= form.text_field :satisfaction %>
+  </div>
+
+  <div class="field">
+    <%= form.label :contribution %>
+    <%= form.text_field :contribution %>
+  </div>
+
+  <div class="field">
+    <%= form.label :conditions %>
+    <%= form.text_field :conditions %>
+  </div>
+
+  <div class="field">
+    <%= form.label :domain %>
+    <%= form.text_field :domain %>
+  </div>
+
+  <div class="field">
+    <%= form.label :clarity %>
+    <%= form.text_field :clarity %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ability %>
+    <%= form.text_field :ability %>
+  </div>
+
+  <div class="field">
+    <%= form.label :treat %>
+    <%= form.text_field :treat %>
+  </div>
+
+  <div class="field">
+    <%= form.label :method %>
+    <%= form.text_field :method %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fears %>
+    <%= form.text_area :fears %>
+  </div>
+
+  <div class="field">
+    <%= form.label :impact %>
+    <%= form.text_area :impact %>
+  </div>
+
+  <div class="field">
+    <%= form.label :comments %>
+    <%= form.text_area :comments %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_29_150140) do
+ActiveRecord::Schema.define(version: 2018_10_02_184813) do
 
   create_table "advisor_has_subjects", force: :cascade do |t|
     t.integer "advisor_id", null: false
@@ -172,7 +172,7 @@ ActiveRecord::Schema.define(version: 2018_09_29_150140) do
     t.integer "treat", null: false
     t.integer "method", null: false
     t.text "fears", null: false
-    t.text "changes", null: false
+    t.text "impact", null: false
     t.text "comments"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
