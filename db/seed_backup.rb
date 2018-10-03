@@ -158,28 +158,8 @@ advisors_list = [
   [13, 2, true]
 ]
 
-advisors_list.each do |student, term, is_valid|
-  Advisor.create(student_id: student, term_id: term, is_valid: is_valid)
-end
-
-puts "[MONTHS]"
-
-months_list = [
-  ['Enero','2018-01-01','2018-01-31'],
-  ['Febrero','2018-02-01','2018-02-28'],
-  ['Marzo','2018-03-01','2018-03-31'],
-   ['Abril','2018-04-01','2018-04-30'],
-  ['Mayo','2018-05-01','2018-05-31'],
-  ['Junio','2018-06-01','2018-06-30'],
-   ['Julio','2018-07-01','2018-07-31'],
-  ['Agosto','2018-08-01','2018-08-31'],
-  ['Septiembre','2018-09-01','2018-09-30'],
-   ['Octubre','2018-10-01','2018-10-31'],
-  ['Noviembre','2018-11-01','2018-11-30'],
-  ['Diciembre','2018-12-01','2018-12-31'],
-  ]
-months_list.each do |name, start_date, end_date|
-  Month.create(name: name, start_date: start_date, end_date: end_date)
+advisors_list.each do |student, semester, is_valid|
+  Advisor.create(student_id: student, semester_id: semester, is_valid: is_valid)
 end
 
 puts "[ADVISOR_HAS_SUBJECTS]"
@@ -203,8 +183,6 @@ advisor_has_subjects_list = [
 advisor_has_subjects_list.each do |advisor, subject|
   Advisor.find(advisor).subjects << Subject.find(subject)
 end
-
-
 
 puts "[SESSIONS]"
 
@@ -240,8 +218,8 @@ sessions_list = [
   [2, 9, 59, nil]
 ]
 
-sessions_list.each do |term, advisor, day_has_hour, subject|
-  Session.create!(term_id: semester, advisor_id: advisor, day_has_hour_id: day_has_hour, subject_id: subject)
+sessions_list.each do |semester, advisor, day_has_hour, subject|
+  Session.create!(semester_id: semester, advisor_id: advisor, day_has_hour_id: day_has_hour, subject_id: subject)
 end
 
 puts "[SESSION_HAS_STUDENTS]"

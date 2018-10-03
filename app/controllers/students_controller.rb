@@ -7,6 +7,20 @@ class StudentsController < ApplicationController
     @students = Student.all
   end
 
+  def accept
+    @student.is_valid = true
+    @student.save
+    respond_to do |format|
+      if @student.update(student_params)
+        format.html { redirect_to @student, notice: 'Student was successfully updated.' }
+        format.json { render :show, status: :ok, location: @student }
+      else
+        format.html { render :edit }
+        format.json { render json: @student.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  
   # GET /students/1
   # GET /students/1.json
   def show
@@ -19,6 +33,7 @@ class StudentsController < ApplicationController
 
   # GET /students/1/edit
   def edit
+        @undergraduate = @student.student_has_undergraduates.first.undergraduate_id
   end
 
   # POST /students
@@ -40,6 +55,11 @@ class StudentsController < ApplicationController
   # PATCH/PUT /students/1
   # PATCH/PUT /students/1.json
   def update
+        @under = Undergraduate.find(form_params[:undergraduate_id])
+    @consul = StudentHasUndergraduate.where(:student_id => @student.id, :undergraduate_id => @student.student_has_undergraduates.first.undergraduate_id).first
+    @consul.undergraduate_id = @under.id
+    @consul.save
+    @student.save
     respond_to do |format|
       if @student.update(student_params)
         format.html { redirect_to @student, notice: 'Student was successfully updated.' }

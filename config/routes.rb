@@ -1,11 +1,9 @@
 Rails.application.routes.draw do
   root 'welcome#index'
 
-  resources :terms
   resources :semesters
-  resources :undergraduates
   resources :subjects
-
+  resources :undergraduates
   resources :students
 
   resources :sessions, only: [:index, :new, :create]
@@ -13,7 +11,7 @@ Rails.application.routes.draw do
   resources :advisors do
     resource :schedule, only: [:show, :new, :create]
   end
-
+  
   resources :advices
   resources :surveys
 
