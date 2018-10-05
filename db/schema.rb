@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_02_184813) do
+ActiveRecord::Schema.define(version: 2018_10_05_144315) do
 
   create_table "advisor_has_subjects", force: :cascade do |t|
     t.integer "advisor_id", null: false
@@ -124,8 +124,10 @@ ActiveRecord::Schema.define(version: 2018_10_02_184813) do
     t.integer "subject_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "month_id", null: false
     t.index ["advisor_id"], name: "index_sessions_on_advisor_id"
     t.index ["day_has_hour_id"], name: "index_sessions_on_day_has_hour_id"
+    t.index ["month_id"], name: "index_sessions_on_month_id"
     t.index ["subject_id"], name: "index_sessions_on_subject_id"
   end
 
