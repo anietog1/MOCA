@@ -19,6 +19,8 @@
         <td><%= link_to 'Show', advisor %></td>
         <td><%= link_to 'Edit', edit_advisor_path(advisor) %></td>
         <td><%= link_to 'Destroy', advisor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= if advisor.is_valid == nil then link_to 'Validate', advisors_validate_path(advisor) end%></td>
+
       </tr>
     <% end %>
   </tbody>

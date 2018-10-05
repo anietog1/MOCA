@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
-  before_action :set_student, only: [:show, :edit, :update, :destroy]
+  before_action :set_student, only: [:show, :edit, :update, :destroy, :validate, :reject, :accept]
 
   # GET /students
   # GET /students.json
@@ -7,23 +7,29 @@ class StudentsController < ApplicationController
     @students = Student.all
   end
 
-  def accept
-    @student.is_valid = true
-    @student.save
+  def reject
+    @student.is_valid = false
     respond_to do |format|
-      if @student.update(student_params)
-        format.html { redirect_to @student, notice: 'Student was successfully updated.' }
-        format.json { render :show, status: :ok, location: @student }
-      else
-        format.html { render :edit }
+      if @student.save
+        format.html { redirect_to students_path, notice: 'Student was successfully rejected.' }
+        format.json { render :index, status: :created, location: @student }
+     
+ else
+        format.html { render :index }
         format.json { render json: @student.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def accept
+    @student.is_valid = true
+    update()
   end
   
   # GET /students/1
   # GET /students/1.json
   def show
+    @undergraduates = @student.student_has_undergraduates
   end
 
   # GET /students/new
@@ -45,17 +51,22 @@ class StudentsController < ApplicationController
       if @student.save
         format.html { redirect_to @student, notice: 'Student was successfully created.' }
         format.json { render :show, status: :created, location: @student }
-      else
+     
+ else
         format.html { render :new }
         format.json { render json: @student.errors, status: :unprocessable_entity }
       end
     end
   end
 
+
+  def validate
+  end
+  
   # PATCH/PUT /students/1
   # PATCH/PUT /students/1.json
   def update
-        @under = Undergraduate.find(form_params[:undergraduate_id])
+    @under = Undergraduate.find(form_params[:undergraduate_id])
     @consul = StudentHasUndergraduate.where(:student_id => @student.id, :undergraduate_id => @student.student_has_undergraduates.first.undergraduate_id).first
     @consul.undergraduate_id = @under.id
     @consul.save

@@ -1,0 +1,7 @@
+<h1>Students#validate</h1>
+<% @title = "Accept"  %>
+<% @url =   students_accept_path(@student) %>
+<%= render 'form', student: @student %>
+
+<%= button_to 'Reject', students_reject_path, method: 'post' %> |
+<%= link_to 'Back', students_path %>

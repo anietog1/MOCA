@@ -158,8 +158,8 @@ advisors_list = [
   [13, 2, true]
 ]
 
-advisors_list.each do |student, term, is_valid|
-  Advisor.create(student_id: student, term_id: term, is_valid: is_valid)
+advisors_list.each do |student, semester, is_valid|
+  Advisor.create(student_id: student, semester_id: semester, is_valid: is_valid)
 end
 
 puts "[ADVISOR_HAS_SUBJECTS]"

@@ -12,8 +12,8 @@
 
 <p>
   <strong>Subjects:</strong>
-  <% @advisor.subjects.each do |subject| %>
-    <%= subject.name %><br>
+  <% @advisor.advisor_has_subjects.each do |subject| %>
+    <%= Subject.find(subject.subject_id).name %><br>
   <% end %>
 </p>
 
