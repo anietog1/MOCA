@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :subjects
   resources :undergraduates
   resources :students
+  resources :classrooms
 
   resources :sessions, only: [:index, :new, :create]
 

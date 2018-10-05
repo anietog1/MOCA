@@ -7,19 +7,22 @@
   <% end %>
 
   <h3>Página de administradores</h3>
-  <br>
 
+  <br>
   <%= button_to 'Estudiantes', students_path, method: :get %>
   <br>
   <%= button_to 'Monitores', advisors_path, method: :get %>
   <br>
   <%= button_to 'Monitorías', advices_path, method: :get %>
+
+  <br>
+  <%= button_to 'Semestres', semesters_path, method: :get %>
+  <br>
+  <%= button_to 'Pregrados', undergraduates_path, method: :get %>
   <br>
   <%= button_to 'Materias', subjects_path, method: :get %>
   <br>
-  <%= button_to 'Periodos', semesters_path, method: :get %>
-  <br>
-  <%= button_to 'Pregrados', undergraduates_path, method: :get %>
+  <%= button_to 'Aulas', classrooms_path, method: :get %>
   <br>
   <%= button_to 'Validaciones', applications_path, method: :get %>
 </div>
