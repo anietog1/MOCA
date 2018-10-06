@@ -14,7 +14,7 @@ class Environment < ApplicationRecord
 
   def self.is_students_register_active?
     @env = Environment.find(1)
-    @env.is_student_register_active unless @env.nil?
+    @env.is_students_register_active unless @env.nil?
   end
 
   def self.is_advisors_register_active?

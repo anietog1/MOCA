@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_05_144315) do
+ActiveRecord::Schema.define(version: 2018_10_06_030705) do
 
   create_table "advisor_has_subjects", force: :cascade do |t|
     t.integer "advisor_id", null: false
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 2018_10_05_144315) do
   end
 
   create_table "environments", force: :cascade do |t|
-    t.boolean "is_student_register_active", default: false, null: false
+    t.boolean "is_students_register_active", default: false, null: false
     t.boolean "is_advisors_register_active", default: false, null: false
     t.boolean "is_schedules_register_active", default: false, null: false
     t.integer "semester_id", null: false
@@ -152,6 +152,7 @@ ActiveRecord::Schema.define(version: 2018_10_05_144315) do
     t.boolean "is_valid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "advisor_grade"
     t.index ["university_code"], name: "index_students_on_university_code", unique: true
     t.index ["university_username"], name: "index_students_on_university_username", unique: true
   end
