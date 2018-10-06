@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Permitido el registro de monitores:</strong>
+  <%= @environment.is_advisors_register_active %>
+</p>
+
+<p>
+  <strong>Permitido el registro de estudiantes:</strong>
+  <%= @environment.is_students_register_active %>
+</p>
+
+<p>
+  <strong>Permitido el registro de horario:</strong>
+  <%= @environment.is_schedules_register_active %>
+</p>
+
+<p>
+  <strong>Semestre:</strong>
+  <%= @environment.semester.name %>
+</p>
+
+<p>
+  <strong>Mes:</strong>
+  <%= @environment.month.name %>
+</p>
+
+<%= link_to 'Editar', edit_environment_path(@environment) %> |
+<%= link_to 'Volver', environments_path %>

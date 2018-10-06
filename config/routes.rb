@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'welcome#index'
+  resources :environments
 
   resources :semesters
   resources :subjects
@@ -12,7 +13,7 @@ Rails.application.routes.draw do
   resources :advisors do
     resource :schedule, only: [:show, :new, :create]
   end
-  
+
   resources :advices
   resources :surveys
 
