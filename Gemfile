@@ -67,5 +67,10 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+# Simple form for making it easier with cocoon
+gem 'simple_form'
+
+# JQuery for cocoon
+gem 'jquery-rails'
 # Cocoon for adding fields on the fly
 gem 'cocoon'
