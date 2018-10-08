@@ -1,12 +1,9 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
-=======
   get 'meetings/create'
   get 'meetings/index'
   get 'meetings/show'
   get 'meetings/ask'
   get 'students/accept'
->>>>>>> 54bb6a16637a2980b5e405080fa70baa56ba6a74
   root 'welcome#index'
   resources :environments
 
