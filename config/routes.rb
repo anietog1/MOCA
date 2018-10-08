@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
+
  get 'meetings/create'
+
+  get 'meetings/create'
+
   get 'meetings/index'
   get 'meetings/show'
   get 'meetings/ask'

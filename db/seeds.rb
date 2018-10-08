@@ -239,8 +239,8 @@ sessions_list = [
   [2, 9, 59, nil]
 ]
 
-sessions_list.each do |term, advisor, day_has_hour, subject|
-  Session.create!(term_id: semester, advisor_id: advisor, day_has_hour_id: day_has_hour, subject_id: subject)
+sessions_list.each do |month, advisor, day_has_hour, subject|
+  Session.create!(month_id: month, advisor_id: advisor, day_has_hour_id: day_has_hour, subject_id: subject)
 end
 
 puts "[SESSION_HAS_STUDENTS]"
