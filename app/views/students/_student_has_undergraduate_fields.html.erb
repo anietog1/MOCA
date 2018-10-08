@@ -1,0 +1,5 @@
+<div class="field">
+  <%= f.association :undergraduate, collection: Undergraduate.order(:name), prompt: 'Elige un pregrado', label: false %>
+</div>
+
+<%= link_to_remove_association 'Descartar pregrado', f %>

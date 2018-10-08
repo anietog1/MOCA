@@ -1,11 +1,13 @@
 class Student < ApplicationRecord
   has_many :advisors
 
-  has_many :student_has_undergraduates
+  has_many :student_has_undergraduates, inverse_of: :student
   has_many :undergraduates, through: :student_has_undergraduates
 
   has_many :session_has_students
   has_many :sessions, through: :session_has_students
+
+  accepts_nested_attributes_for :student_has_undergraduates, allow_destroy: true
 
   validates :first_name, presence: true
   validates :first_surname, presence: true
