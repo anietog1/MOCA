@@ -1,0 +1,41 @@
+<%= form_with(model: @session, local: true) do |form| %>
+<% if @session.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@session.errors.count, "error") %> prohibited this session from being saved:</h2>
+
+  <ul>
+    <% @session.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<div class="field">
+  <%= form.label :semester_id, 'Periodo' %>
+  <%= form.collection_select :semester_id, Semester.all, :id, :name, prompt: 'Seleccionar' %>
+</div>
+
+<div class="field">
+  <%= form.label :day_id, 'Día' %>
+  <%= form.collection_select :day_id, Day.all, :id, :name, prompt: 'Seleccionar' %>
+</div>
+
+<div class="field">
+  <%= form.label :hour_id, 'Hora' %>
+  <%= form.collection_select :hour_id, Hour.all, :id, :name, prompt: 'Seleccionar' %>
+</div>
+
+<div class="field">
+  <%= form.label :subject_id, 'Materia' %>
+  <%= form.collection_select :subject_id, Subject.all, :id, :name, prompt: 'Seleccionar' %>
+</div>
+
+<div class="field">
+  <%= form.label :student_university_code, 'Código del estudiante' %>
+  <%= form.text_field :student_university_code %>
+</div>
+
+<div class="actions">
+  <%= form.submit 'Enviar' %>
+</div>
+<% end %>
