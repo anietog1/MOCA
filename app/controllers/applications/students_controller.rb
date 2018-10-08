@@ -26,13 +26,6 @@ class Applications::StudentsController < ApplicationController
         format.json { render json: @student.errors, status: :unprocessable_entity }
       end
     end
-
-    #   respond_to do |format|
-    #      format.html {
-    #        redirect_to applications_students_url,
-    #                    notice: 'Student was successfully accepted.'
-    #      }
-    #    end
   end
 
   def reject

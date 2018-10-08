@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+<<<<<<< HEAD
+=======
+  get 'meetings/create'
+  get 'meetings/index'
+  get 'meetings/show'
+  get 'meetings/ask'
+  get 'students/accept'
+>>>>>>> 54bb6a16637a2980b5e405080fa70baa56ba6a74
   root 'welcome#index'
   resources :environments
 
@@ -23,6 +31,7 @@ Rails.application.routes.draw do
     resources :students, only: [:index, :show]
     post 'students/accept/:id', to: 'students#accept', as: 'student_accept'
     post 'students/reject/:id', to: 'students#reject', as: 'student_reject'
+    get 'meetings/create', to: 'meetings#create', as: 'meetings_create'
 
     resources :advisors, only: [:index, :show]
     post 'advisors/accept/:id', to: 'advisors#accept', as: 'advisor_accept'
