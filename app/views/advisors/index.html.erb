@@ -1,12 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Advisors</h1>
+<h1>Monitores</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Student username</th>
-      <th>Semester</th>
+      <th>Código universitario</th>
+      <th>Semestre</th>
+      <th>Válido</th>
+      <th>Materias</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,15 +16,25 @@
   <tbody>
     <% @advisors.each do |advisor| %>
       <tr>
-        <td><%= advisor.student.university_username %></td>
+        <td><%= advisor.student.university_code %></td>
         <td><%= advisor.semester.name %></td>
-        <td><%= link_to 'Show', advisor %></td>
-        <td><%= link_to 'Edit', edit_advisor_path(advisor) %></td>
-        <td><%= link_to 'Destroy', advisor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= advisor.is_valid %></td>
+        <td>
+          <ul>
+            <% advisor.subjects.each do |subject| %>
+              <li><%= subject.name %></li>
+            <% end %>
+          </ul>
+        </td>
+        <td><%= link_to 'Ver', advisor %></td>
+        <td><%= link_to 'Editar', edit_advisor_path(advisor) %></td>
+        <td><%= link_to 'Destruir', advisor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
 <br>
-<%= link_to 'New Advisor', new_advisor_path %> | 
-<%= link_to 'Back', root_path, method: :get %>
+
+<%= link_to 'Nuevo monitor', new_advisor_path %> | 
+<%= link_to 'Volver', root_path, method: :get %>
