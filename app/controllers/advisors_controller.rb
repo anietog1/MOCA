@@ -28,12 +28,6 @@ class AdvisorsController < ApplicationController
 
     respond_to do |format|
       if @advisor.save
-        @subjects = subject_params.map { |subject_id| Subject.find(subject_id) }
-
-        @subjects.each do |subject|
-          @advisor.subjects << subject
-        end
-
         format.html { redirect_to @advisor, notice: 'Advisor was successfully created.' }
         format.json { render :show, status: :created, location: @advisor }
       else
@@ -74,23 +68,10 @@ class AdvisorsController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def form_params
-      params.require(:advisor).permit(:student_university_code, :subject1_id, :subject2_id, :subject3_id, :subject4_id)
-    end
-
     def advisor_params
-      temp = form_params
-      student = Student.where(university_code: temp[:student_university_code]).first
-      { student_id: student.id, semester: Environment.last.semester }
-    end
-
-    def subject_params
-      temp = form_params
-      subject_ids = []
-      subject_ids << temp[:subject1_id] unless temp[:subject1_id].nil? || temp[:subject1_id].empty?
-      subject_ids << temp[:subject2_id] unless temp[:subject2_id].nil? || temp[:subject2_id].empty?
-      subject_ids << temp[:subject3_id] unless temp[:subject3_id].nil? || temp[:subject3_id].empty?
-      subject_ids << temp[:subject4_id] unless temp[:subject4_id].nil? || temp[:subject4_id].empty?
-      subject_ids.sort.uniq
+      params.require(:advisor).permit(
+        :student_id, :is_valid,
+        advisor_has_subjects_attributes: [:id, :_destroy, :subject_id]
+      ).merge(semester_id: Environment.last.semester.id)
     end
 end

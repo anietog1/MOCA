@@ -1,42 +1,26 @@
-<%= form_with(model: advisor, local: true) do |form| %>
-  <% if advisor.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(advisor.errors.count, "error") %> prohibited this advisor from being saved:</h2>
+<%= simple_form_for(advisor) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-      <ul>
-      <% advisor.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <div class="form-inputs">
+    <%= f.input :student_id, {
+          collection: Student.order(:university_code),
+          label_method: :university_code,
+          value_method: :id,
+          label: 'Código de estudiante',
+          prompt: 'Seleccione un estudiante'
+        }
+    %>
 
-  <div class="field">
-    <%= form.label :student_university_code, "University code" %>
-    <%= form.text_field :student_university_code %>
+    <strong>Materias</strong>
+    <br>
+    <%= f.simple_fields_for :advisor_has_subjects do |advisor_has_subject| %>
+      <%= render 'advisor_has_subject_fields', f: advisor_has_subject %>
+    <% end %>
+    <%= link_to_add_association 'Agregar materia', f, :advisor_has_subjects %>
   </div>
 
-  <div class="field">
-    <%= form.label :subject1_id %>
-    <%= form.collection_select :subject1_id, Subject.all, :id, :name, prompt: true %>
-  </div>
-
-  <div class="field">
-    <%= form.label :subject2_id %>
-    <%= form.collection_select :subject2_id, Subject.all, :id, :name, prompt: true %>
-  </div>
-
-  <div class="field">
-    <%= form.label :subject3_id %>
-    <%= form.collection_select :subject3_id, Subject.all, :id, :name, prompt: true %>
-  </div>
-
-  <div class="field">
-    <%= form.label :subject4_id %>
-    <%= form.collection_select :subject4_id, Subject.all, :id, :name, prompt: true %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-actions">
+    <%= f.button :submit, 'Crear monitor' %>
   </div>
 <% end %>
