@@ -33,14 +33,13 @@ class StudentsController < ApplicationController
 
   # GET /students/1/edit
   def edit
-        @undergraduate = @student.student_has_undergraduates.first.undergraduate_id
   end
 
   # POST /students
   # POST /students.json
   def create
     @student = Student.new(student_params)
-    @student.undergraduates << Undergraduate.find(form_params[:undergraduate_id])
+
     respond_to do |format|
       if @student.save
         format.html { redirect_to @student, notice: 'Student was successfully created.' }
@@ -55,7 +54,7 @@ class StudentsController < ApplicationController
   # PATCH/PUT /students/1
   # PATCH/PUT /students/1.json
   def update
-        @under = Undergraduate.find(form_params[:undergraduate_id])
+    @under = Undergraduate.find(form_params[:undergraduate_id])
     @consul = StudentHasUndergraduate.where(:student_id => @student.id, :undergraduate_id => @student.student_has_undergraduates.first.undergraduate_id).first
     @consul.undergraduate_id = @under.id
     @consul.save
@@ -89,16 +88,13 @@ class StudentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
-      { first_name: form_params[:first_name],
-        middle_name: form_params[:middle_name],
-        first_surname: form_params[:first_surname],
-        second_surname: form_params[:second_surname],
-        university_code: form_params[:university_code],
-        university_username: form_params[:university_username],
-        mobile_phone: form_params[:mobile_phone] }      
-    end
-
-    def form_params
-      params.require(:student).permit(:first_name, :middle_name, :first_surname, :second_surname, :university_code, :university_username, :mobile_phone, :is_advisor, :is_valid, :undergraduate_id )
+      params.require(:student).permit(
+        :first_name, :middle_name,
+        :first_surname, :second_surname,
+        :university_code, :university_username,
+        :mobile_phone, :is_valid,
+        :is_advisor, :advisor_grade,
+        student_has_undergraduates_attributes: [:id, :_destroy, :undergraduate_id]
+      )
     end
 end
