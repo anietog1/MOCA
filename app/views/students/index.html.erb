@@ -1,19 +1,17 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Students</h1>
+<h1>Estudiantes</h1>
 
 <table>
   <thead>
     <tr>
-      <th>First name</th>
-      <th>Middle name</th>
-      <th>First surname</th>
-      <th>Second surname</th>
-      <th>University code</th>
-      <th>University username</th>
-      <th>Mobile phone</th>
-      <th>Is advisor</th>
-      <th>Undergraduate</th>
+      <th>Nombre completo</th>
+      <th>Código</th>
+      <th>Usuario</th>
+      <th>Número telefónico</th>
+      <th>Válido</th>
+      <th>Monitor</th>
+      <th>Pregrados</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -21,26 +19,27 @@
   <tbody>
     <% @students.each do |student| %>
       <tr>
-        <td><%= student.first_name %></td>
-        <td><%= student.middle_name %></td>
-        <td><%= student.first_surname %></td>
-        <td><%= student.second_surname %></td>
+        <td><%= student.full_name %></td>
         <td><%= student.university_code %></td>
         <td><%= student.university_username %></td>
         <td><%= student.mobile_phone %></td>
+        <td><%= student.is_valid %></td>
         <td><%= student.is_advisor %></td>
-        <td><% student.undergraduates.each do |under| %>
-          <p><%= under.name %></p>
-          <% end %>
-          </td>
-        <td><%= link_to 'Show', student %></td>
-        <td><%= link_to 'Edit', edit_student_path(student) %></td>
-        <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <ul>
+            <% student.undergraduates.each do |undergraduate| %>
+              <li><%= undergraduate.name %></li>
+            <% end %>
+          </ul>
+        </td>
+        <td><%= link_to 'Ver', student %></td>
+        <td><%= link_to 'Editar', edit_student_path(student) %></td>
+        <td><%= link_to 'Destruir', student, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-<%= link_to 'New Student', new_student_path %> | 
-<%= link_to 'Back', root_path, method: :get %>
+<%= link_to 'Nuevo estudiante', new_student_path %> | 
+<%= link_to 'Volver', root_path, method: :get %>

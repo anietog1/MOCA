@@ -54,11 +54,6 @@ class StudentsController < ApplicationController
   # PATCH/PUT /students/1
   # PATCH/PUT /students/1.json
   def update
-    @under = Undergraduate.find(form_params[:undergraduate_id])
-    @consul = StudentHasUndergraduate.where(:student_id => @student.id, :undergraduate_id => @student.student_has_undergraduates.first.undergraduate_id).first
-    @consul.undergraduate_id = @under.id
-    @consul.save
-    @student.save
     respond_to do |format|
       if @student.update(student_params)
         format.html { redirect_to @student, notice: 'Student was successfully updated.' }
