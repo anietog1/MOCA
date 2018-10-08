@@ -18,7 +18,7 @@
   <tbody>
     <% @sessions.each do |session| %>
     <tr>
-      <td><%= session.semester.name %></td>
+      <td><%= session.month.name %></td>
       <td><%= session.day_has_hour.day.name %></td>
       <td><%= session.day_has_hour.hour.name %></td>
       <td><%= session.subject.name unless session.subject.nil? %></td>
