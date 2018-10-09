@@ -17,4 +17,16 @@ class Student < ApplicationRecord
     [first_name, middle_name, first_surname, second_surname]
       .compact.reject(&:nil?).join(' ')
   end
+
+  def self.to_csv
+    attributes = %w{full_name university_code university_username}
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      all.each do |student|
+        csv << attributes.map{ |attr| student.send(attr) }
+      end
+    end
+  end
 end

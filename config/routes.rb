@@ -17,8 +17,7 @@ Rails.application.routes.draw do
   resources :advices
   resources :surveys
 
-  resources :applications, only: [:index]
-
+  resources :applications, only: :index
   namespace :applications do
     resources :students, only: [:index, :show]
     post 'students/accept/:id', to: 'students#accept', as: 'student_accept'
@@ -27,5 +26,10 @@ Rails.application.routes.draw do
     resources :advisors, only: [:index, :show]
     post 'advisors/accept/:id', to: 'advisors#accept', as: 'advisor_accept'
     post 'advisors/reject/:id', to: 'advisors#reject', as: 'advisor_reject'
+  end
+
+  resources :downloads, only: :index
+  namespace :downloads do
+    get :students
   end
 end
