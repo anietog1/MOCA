@@ -1,6 +1,7 @@
 class AdvicesController < ApplicationController
   def index
     @shs = SessionHasStudent.all
+    @advices = Session.joins(:session_has_students)
   end
 
   def new
