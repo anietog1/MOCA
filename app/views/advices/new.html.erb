@@ -1,5 +1,19 @@
 <h1>Nueva monitoría</h1>
 
-<%= render 'form' %>
+<%= form_with(url: advice_create_path, html: { method: "post" }, local: true) do |form| %>
+  <div class="field">
+    <%= form.label :session_id, 'Materia' %>
+    <%= form.collection_select :session_id, Session.all, :id, :formatted_name, prompt: 'Seleccionar' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :student_id, 'Código del estudiante' %>
+    <%= form.text_field :student_id %>
+   </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
 
 <%= link_to 'Volver', advices_path %>

@@ -18,11 +18,6 @@
   </div>
 
   <div class="field">
-    <%= form.label :semester_id %>
-    <%= form.collection_select :semester_id, Semester.all, :id, :name, prompt: true %>
-  </div>
-
-  <div class="field">
     <%= form.label :subject1_id %>
     <% if @subject1 != -1 then %>
     <%= form.collection_select :subject1_id, Subject.all, :id, :name, { :selected => @subject1 } , prompt: true %>

@@ -1,22 +1,7 @@
 <%= form_for :advice do |form| %>
   <div class="field">
-    <%= form.label :semester_id, 'Periodo' %>
-    <%= form.collection_select :semester_id, Semester.all, :id, :name, prompt: 'Seleccionar' %>
-  </div>
-
-  <div class="field">
-    <%= form.label :day_id, 'Día' %>
-    <%= form.collection_select :day_id, Day.all, :id, :name, prompt: 'Seleccionar' %>
-  </div>
-
-  <div class="field">
-    <%= form.label :hour_id, 'Hora' %>
-    <%= form.collection_select :hour_id, Hour.all, :id, :name, prompt: 'Seleccionar' %>
-  </div>
-
-  <div class="field">
-    <%= form.label :subject_id, 'Materia' %>
-    <%= form.collection_select :subject_id, Subject.all, :id, :name, prompt: 'Seleccionar' %>
+    <%= form.label :session_id, 'Materia' %>
+    <%= form.collection_select :session_id, Session.all, :id, :formatted_name, prompt: 'Seleccionar' %>
   </div>
 
   <div class="field">

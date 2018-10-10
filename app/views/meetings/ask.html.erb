@@ -1,0 +1,38 @@
+<%= form_for(meetings_create_path, html: {method: "get"}) do |form| %>
+
+<div class="field">
+  <%= form.label :classroom_id %>
+  <%= form.text_field :classroom_id %>
+</div>
+
+
+<div class="field">
+  <%= form.label :advisor_id %>
+  <%= form.collection_select(:advisor_id, Advisor.all, :id, :student_id,  prompt: true) %>
+</div>
+
+<div class="field">
+  <%= form.label :undergraduate_id %>
+  <%= form.collection_select :undergraduate_id, Undergraduate.all, :id, :name, prompt: true %>
+</div>
+
+<div class="field">
+  <%= form.label :month_id %>
+  <%= form.collection_select :month_id, Month.all, :id, :name, prompt: true %>
+</div>
+
+<div class="field">
+  <%= form.label :day_id %>
+  <%= form.collection_select :day_id, Day.all, :id, :name, prompt: true %>
+</div>
+
+<div class="field">
+  <%= form.label :hour_id %>
+  <%= form.collection_select :hour_id, Hour.all, :id, :name, prompt: true %>
+</div>
+<br>
+<div class="actions">
+  <%= form.submit("Ask") %>
+</div>
+<% end %>
+<%= link_to 'Cancel', meetings_index_path %>

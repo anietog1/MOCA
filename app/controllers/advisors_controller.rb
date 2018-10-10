@@ -119,13 +119,14 @@ class AdvisorsController < ApplicationController
     { semester_id: temp[:semester_id] }
   end
 
+
   def subject_params
     temp = form_params
     subject_ids = []
-    subject_ids << temp[:subject1_id] unless temp[:subject1_id].nil?
-    subject_ids << temp[:subject2_id] unless temp[:subject2_id].nil?
-    subject_ids << temp[:subject3_id] unless temp[:subject3_id].nil?
-    subject_ids << temp[:subject4_id] unless temp[:subject4_id].nil?
+    subject_ids << temp[:subject1_id] unless temp[:subject1_id].nil? || temp[:subject1_id].empty?
+    subject_ids << temp[:subject2_id] unless temp[:subject2_id].nil? || temp[:subject2_id].empty?
+    subject_ids << temp[:subject3_id] unless temp[:subject3_id].nil? || temp[:subject3_id].empty?
+    subject_ids << temp[:subject4_id] unless temp[:subject4_id].nil? || temp[:subject4_id].empty?
     subject_ids.sort.uniq
   end
 end

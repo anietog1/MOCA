@@ -21,6 +21,27 @@ days_list.each do |name|
   Day.create(name: name)
 end
 
+puts "[MONTHS]"
+
+months_list = [
+  'Enero',
+  'Febrero',
+  'Marzo',
+  'Abril',
+  'Mayo',
+  'Junio',
+  'Julio',
+  'Agosto',
+  'Septiembre',
+  'Octubre',
+  'Noviembre',
+  'Diciembre'  
+]
+
+months_list.each do |name|
+  Month.create(name: name)
+end
+
 puts "[HOURS]"
 
 hours_list = (7..19).map { |num| num.to_s + ":00" }
@@ -218,8 +239,8 @@ sessions_list = [
   [2, 9, 59, nil]
 ]
 
-sessions_list.each do |term, advisor, day_has_hour, subject|
-  Session.create!(term_id: semester, advisor_id: advisor, day_has_hour_id: day_has_hour, subject_id: subject)
+sessions_list.each do |month, advisor, day_has_hour, subject|
+  Session.create!(month_id: month, advisor_id: advisor, day_has_hour_id: day_has_hour, subject_id: subject)
 end
 
 puts "[SESSION_HAS_STUDENTS]"

@@ -1,0 +1,141 @@
+<%= form_with(model: survey, local: true) do |form| %>
+  <% if survey.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(survey.errors.count, "error") %> prohibited this survey from being saved:</h2>
+
+      <ul>
+      <% survey.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :session_has_student_id %>
+    <%= form.text_field :session_has_student_id %>
+  </div>
+<table>
+
+  <tr>
+    <td>In a scale from 1 to 5, being 5 the max value, quantify</td>
+    <td>1</td>
+    <td>2</td>
+    <td>3</td>
+    <td>4</td>
+    <td>5</td>
+  </tr>
+  <div class="field">
+    
+  <tr>
+ <td><%= form.label :satisfaction %></td> 
+
+   <% (1..5).each do |value| %>
+
+  <td><%= form.radio_button(:satisfaction, value) %></td>
+   <% end %>
+ </tr>
+ 
+  </div>
+
+  <div class="field">
+  
+     <tr>
+ <td><%= form.label :contribution %></td> 
+
+   <% (1..5).each do |value| %>
+
+  <td><%= form.radio_button(:contribution, value) %></td>
+   <% end %>
+ </tr>
+  </div>
+
+  <div class="field">
+    
+ <tr>
+ <td><%= form.label :conditions %></td> 
+
+   <% (1..5).each do |value| %>
+
+  <td><%= form.radio_button(:conditions, value) %></td>
+   <% end %>
+ </tr>
+  </div>
+
+  <div class="field">
+  
+     <tr>
+ <td><%= form.label :domain %></td> 
+
+   <% (1..5).each do |value| %>
+
+  <td><%= form.radio_button(:domain, value) %></td>
+   <% end %>
+ </tr>
+  </div>
+
+  <div class="field">
+    
+     <tr>
+ <td><%= form.label :clarity %></td> 
+
+   <% (1..5).each do |value| %>
+
+  <td><%= form.radio_button(:clarity, value) %></td>
+   <% end %>
+ </tr>
+  </div>
+
+  <div class="field">
+    <tr>
+ <td><%= form.label :ability %></td> 
+
+   <% (1..5).each do |value| %>
+
+  <td><%= form.radio_button(:ability, value) %></td>
+   <% end %>
+ </tr>
+  </div>
+
+  <div class="field">
+    <tr>
+ <td><%= form.label :treat %></td> 
+
+   <% (1..5).each do |value| %>
+
+  <td><%= form.radio_button(:treat, value) %></td>
+   <% end %>
+ </tr>
+  </div>
+
+  <div class="field">
+ <tr>
+ <td><%= form.label :method %></td> 
+
+   <% (1..5).each do |value| %>
+
+  <td><%= form.radio_button(:method, value) %></td>
+   <% end %>
+ </tr>
+  </div>
+</table>
+
+  <div class="field">
+    <%= form.label :fears %>
+    <%= form.text_area :fears %>
+  </div>
+
+  <div class="field">
+    <%= form.label :impact %>
+    <%= form.text_area :impact %>
+  </div>
+
+  <div class="field">
+    <%= form.label :comments %>
+    <%= form.text_area :comments %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
