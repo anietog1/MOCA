@@ -1,14 +1,8 @@
 Rails.application.routes.draw do
-
-
- get 'meetings/create'
-
-  get 'meetings/create'
-
-  get 'meetings/index'
-  get 'meetings/show'
-  get 'meetings/ask'
-  get 'students/accept'
+  post 'advices/create', to: 'advices#create', as: 'advice_create'
+  get 'advices', to: 'advices#index', as: 'advices'
+  get 'advices/new', to: 'advices#new', as: 'new_advice'
+  get 'advices/show', to: 'advices#show',as: ''
   root 'welcome#index'
   resources :environments
 
@@ -24,7 +18,6 @@ Rails.application.routes.draw do
     resource :schedule, only: [:show, :new, :create]
   end
 
-  resources :advices
   resources :surveys
 
   resources :applications, only: [:index]

@@ -16,9 +16,10 @@
   </thead>
 
   <tbody>
-    <% @sessions.each do |session| %>
+    <% @shs.each do |shs| %>
     <tr>
-      <td><%= session.semester.name %></td>
+      <% session = Session.find(shs.session_id) %>
+      <td><%= Month.find(session.month_id).name %></td>
       <td><%= session.day_has_hour.day.name %></td>
       <td><%= session.day_has_hour.hour.name %></td>
       <td><%= session.subject.name unless session.subject.nil? %></td>
