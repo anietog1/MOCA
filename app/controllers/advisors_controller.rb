@@ -12,6 +12,7 @@ class AdvisorsController < ApplicationController
   def show
   end
 
+
   # GET /advisors/new
   def new
     @advisor = Advisor.new

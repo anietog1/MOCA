@@ -1,17 +1,18 @@
 Rails.application.routes.draw do
+  get 'grades/:show'
+  get 'grades/:update'
   root 'welcome#index'
   resources :environments
-
   resources :semesters
   resources :subjects
   resources :undergraduates
   resources :students
   resources :classrooms
-
-  resources :sessions, only: [:index, :new, :create]
+   resources :sessions, only: [:index, :new, :create]
 
   resources :advisors do
     resource :schedule, only: [:show, :new, :create]
+    resource :grade, only: [:show, :update]
   end
 
   resources :advices
