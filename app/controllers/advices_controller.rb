@@ -2,7 +2,7 @@
 class AdvicesController < ApplicationController
   def index
     @shs = SessionHasStudent.all
-    @advices = Session.joins(:session_has_students)
+    @advices = Session.all
   end
 
   def new
@@ -17,6 +17,7 @@ class AdvicesController < ApplicationController
         msg = ""
         if @session.size >= 2 then
           msg = "Quedan pocos cupos para esta monitoria."
+          AdviceMailer.alert_advice_size("eevinley@gmail.com", @shs).deliver
         end
         format.html { redirect_to advices_path, notice: 'La monitoría fue registrada.'+ msg}
         format.json { render :index }

@@ -1,0 +1,6 @@
+Los cupos para la siguiente monitoría se están agotando:
+Materia: <%= @advice.subject.name unless @advice.subject == nil %>
+Monitor: <%= @advice.advisor.student.full_name %>
+Día: <%= @advice.day_has_hour.day.name %>
+Hora: <%= @advice.day_has_hour.hour.name %>
+Número de estudiantes registrados: <%= @advice.session_has_students.size %>
