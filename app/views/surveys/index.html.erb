@@ -24,7 +24,7 @@
   <tbody>
     <% @surveys.each do |survey| %>
       <tr>
-        <td><%= survey.session_has_student %></td>
+        <td><%= survey.session_has_student.id %></td>
         <td><%= survey.satisfaction %></td>
         <td><%= survey.contribution %></td>
         <td><%= survey.conditions %></td>
