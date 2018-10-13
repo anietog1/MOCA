@@ -22,6 +22,10 @@ class AdvisorsController < ApplicationController
   def edit
   end
 
+  def ranking
+    @advisors = Advisor.all
+  end
+
   # POST /advisors
   # POST /advisors.json
   def create
