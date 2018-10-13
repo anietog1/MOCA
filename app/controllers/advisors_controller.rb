@@ -73,29 +73,29 @@ class AdvisorsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_advisor
-      @advisor = Advisor.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_advisor
+    @advisor = Advisor.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def form_params
-      params.require(:advisor).permit(:student_university_code, :subject1_id, :subject2_id, :subject3_id, :subject4_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def form_params
+    params.require(:advisor).permit(:student_university_code, :subject1_id, :subject2_id, :subject3_id, :subject4_id)
+  end
 
-    def advisor_params
-      temp = form_params
-      student = Student.where(university_code: temp[:student_university_code]).first
-      { student_id: student.id, semester: Environment.last.semester }
-    end
+  def advisor_params
+    temp = form_params
+    student = Student.where(university_code: temp[:student_university_code]).first
+    { student_id: student.id, semester: Environment.last.semester }
+  end
 
-    def subject_params
-      temp = form_params
-      subject_ids = []
-      subject_ids << temp[:subject1_id] unless temp[:subject1_id].nil? || temp[:subject1_id].empty?
-      subject_ids << temp[:subject2_id] unless temp[:subject2_id].nil? || temp[:subject2_id].empty?
-      subject_ids << temp[:subject3_id] unless temp[:subject3_id].nil? || temp[:subject3_id].empty?
-      subject_ids << temp[:subject4_id] unless temp[:subject4_id].nil? || temp[:subject4_id].empty?
-      subject_ids.sort.uniq
-    end
+  def subject_params
+    temp = form_params
+    subject_ids = []
+    subject_ids << temp[:subject1_id] unless temp[:subject1_id].nil? || temp[:subject1_id].empty?
+    subject_ids << temp[:subject2_id] unless temp[:subject2_id].nil? || temp[:subject2_id].empty?
+    subject_ids << temp[:subject3_id] unless temp[:subject3_id].nil? || temp[:subject3_id].empty?
+    subject_ids << temp[:subject4_id] unless temp[:subject4_id].nil? || temp[:subject4_id].empty?
+    subject_ids.sort.uniq
+  end
 end

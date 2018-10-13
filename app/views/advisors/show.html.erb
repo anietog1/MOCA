@@ -13,7 +13,7 @@
 <p>
   <strong>Subjects:</strong>
   <% @advisor.subjects.each do |subject| %>
-    <%= subject.name %><br>
+  <%= subject.name %><br>
   <% end %>
 </p>
 
@@ -22,7 +22,7 @@
   <%= @advisor.student.advisor_grade %>
 </p>
 
-<%= link_to 'Schedule', advisor_schedule_path(@advisor), method: :get %> | 
+<%= link_to 'Schedule', advisor_schedule_path(@advisor), method: :get %> |
 <%= link_to 'Edit', edit_advisor_path(@advisor) %> |
 <%= link_to 'Qualify', advisor_grade_path(@advisor) %> |
 <%= link_to 'Back', advisors_path %>
