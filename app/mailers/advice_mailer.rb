@@ -1,6 +1,6 @@
 # coding: utf-8
 class AdviceMailer < ApplicationMailer
-  default from: "kaparrahe@gmail.com"
+  default from: "mocainforma@gmail.com"
   
   def alert_advice_size(admin_email, advice)
     admin_email

@@ -73,8 +73,7 @@ class AdvisorsController < ApplicationController
   # PATCH/PUT /advisors/1.json
   def update
     respond_to do |format|
-      if @advisor.update(advisor_params)
-        @student.save
+      if @advisor.save
         format.html { redirect_to @advisor, notice: 'Advisor was successfully updated.' }
         format.json { render :show, status: :ok, location: @advisor }
       else
@@ -114,8 +113,7 @@ class AdvisorsController < ApplicationController
   end
 
   def advisor_params
-    temp = form_params
-    
+    temp = form_params  
     { semester_id: temp[:semester_id] }
   end
 
