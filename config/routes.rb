@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  post 'advisors/:id/grade', to: 'grades#update', as: 'advisors_grade_update'
+  post 'advisors/:advisor_id/grade', to: 'grades#update', as: 'advisor_grade'
   root 'welcome#index'
   resources :environments
   resources :semesters
@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :students
   resources :classrooms
   resources :sessions, only: [:index, :new, :create]
-  resources :grades
+ # resources :grades
   resources :advisors do
     resource :schedule, only: [:show, :new, :create]
     resource :grade, only: [:show, :update]

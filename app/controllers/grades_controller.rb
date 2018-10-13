@@ -3,12 +3,18 @@ class GradesController < ApplicationController
   end
 
   def update
-     @advisor = Advisor.where(advisor_id: form_params[:advisor_id])
+     @advisor = Advisor.find(params[:advisor_id])
      #@advisor = Advisor.find(form_params[:advisor_id]).first
     #sd = @advisor.student_id
-    @student = Student.find(student_params[:id])
+    @student = Student.where(id: student_params[:id]).first
+    if @student.advisor_grade != nil
+      ag = form_params[:advisor_grade].to_f
+      g = (@student.advisor_grade.to_f + ag)/2.0
+    else 
+      g = form_params[:advisor_grade].to_f
+    end
   	respond_to do |format|
-      if @student.update(advisor_grade: form_params[:advisor_grade])
+      if @student.update(advisor_grade: g)
         format.html { redirect_to advisors_path, notice: 'Your qualify was successfully sent.' }
         format.json { render :index }
       else
@@ -19,7 +25,7 @@ class GradesController < ApplicationController
   end
 
   def student_params
-    { id: Advisor.find_by(advisor_params[:id]).student_id }
+    { id: Advisor.find(advisor_params[:id]).student_id }
   end
 
   def advisor_params
@@ -27,6 +33,6 @@ class GradesController < ApplicationController
   end
 
    def form_params
-    params.permit(:advisor_id, :advisor_grade)
+    params.require(:grade).permit(:advisor_grade)
   end
 end
