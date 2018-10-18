@@ -10,7 +10,7 @@
   </thead>
 
   <tbody>
-    <% @advisors.each do |advisor| %>
+    <% @advisors.joins(:student).order("advisor_grade DESC").each do |advisor| %>
     <tr>
       <td><%= advisor.student.university_username %></td>
       <td><%= advisor.student.advisor_grade %></td>

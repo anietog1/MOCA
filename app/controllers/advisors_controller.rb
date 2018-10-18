@@ -23,7 +23,8 @@ class AdvisorsController < ApplicationController
   end
 
   def ranking
-    @advisors = Advisor.all
+      @advisors = Advisor.all
+  
   end
 
   # POST /advisors
