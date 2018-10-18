@@ -4,7 +4,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
   def change
     create_table :users do |t|
       t.references :student
-      t.integer :kind, null: false # 0 for super-admin, 1 for admin, 2 for student
+      t.integer :kind, null: false, default: 2 # 0 for super-admin, 1 for admin, 2 for student
 
       ## Database authenticatable
       t.string :email,              null: false, default: ""

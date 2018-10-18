@@ -191,7 +191,7 @@ ActiveRecord::Schema.define(version: 2018_10_18_144220) do
 
   create_table "users", force: :cascade do |t|
     t.integer "student_id"
-    t.integer "kind", null: false
+    t.integer "kind", default: 2, null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
