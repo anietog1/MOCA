@@ -1,0 +1,28 @@
+<%= form_with(model: @student, local: true) do |form| %>
+<table>
+
+  <tr>
+    <td>In a scale from 1 to 5, being 5 the max value, qualify</td>
+    <td>1</td>
+    <td>2</td>
+    <td>3</td>
+    <td>4</td>
+    <td>5</td>
+  </tr>
+  <div class="field">
+
+    <tr>
+      <td><%= form.label :advisor_grade %></td>
+
+      <% (1..5).each do |value| %>
+
+      <td><%= form.radio_button(:advisor_grade, value) %></td>
+      <% end %>
+    </tr>
+
+  </div>
+  </table>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

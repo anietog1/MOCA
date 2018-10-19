@@ -1,19 +1,20 @@
 Rails.application.routes.draw do
+  post 'advisors/:advisor_id/grade', to: 'grades#update', as: 'advisor_grade'
+  get 'advisors/ranking', to: 'advisors#ranking', as: 'ranking_advisor'
   root 'welcome#index'
   devise_for :users
   
   resources :environments
-
   resources :semesters
   resources :subjects
   resources :undergraduates
   resources :students
   resources :classrooms
-
   resources :sessions, only: [:index, :new, :create]
-
+ 
   resources :advisors do
     resource :schedule, only: [:show, :new, :create]
+    resource :grade, only: [:show, :update]
   end
 
   resources :advices

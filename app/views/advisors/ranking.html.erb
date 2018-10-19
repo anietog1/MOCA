@@ -1,0 +1,23 @@
+<h1>Ranking</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Student username</th>
+      <th>Grade</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @advisors.joins(:student).order("advisor_grade DESC").each do |advisor| %>
+    <tr>
+      <td><%= advisor.student.university_username %></td>
+      <td><%= advisor.student.advisor_grade %></td>
+      <td><%= link_to 'Show', advisor %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<%= link_to 'Back', advisors_path %>
