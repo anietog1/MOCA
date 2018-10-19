@@ -1,0 +1,8 @@
+<h1>Advisors#validate</h1>
+<% @title = "Accept"  %>
+<% @url =   advisor_accept_path(@advisor) %>
+<%= render 'form', advisor: @advisor %>
+
+<%= button_to 'Reject', advisor_reject_path, method: 'post' %> |
+<%= link_to 'Back', advisors_path %>
+

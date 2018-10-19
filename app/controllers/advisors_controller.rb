@@ -1,6 +1,6 @@
 class AdvisorsController < ApplicationController
-  before_action :set_advisor, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_advisor, only: [:show, :edit, :update, :destroy, :validate, :accept, :reject]
+  before_action :set_student, only: [:show, :edit, :accept, :reject, :validate]
   # GET /advisors
   # GET /advisors.json
   def index
@@ -12,7 +12,33 @@ class AdvisorsController < ApplicationController
   def show
   end
 
+  def accept
+    @advisor.is_valid = true
+    @student.is_advisor = true
+    update()
+  end
 
+  def reject
+    @advisor.is_valid = true
+    @student.is_advisor = true
+    respond_to do |format|
+      if @advisor.save
+        @student.save
+        format.html { redirect_to students_path, notice: 'Student was successfully rejected.' }
+        format.json { render :index, status: :created, location: @student }
+        
+      else
+        format.html { render :index }
+        format.json { render json: @student.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  
+  def validate
+    
+  end
+  
   # GET /advisors/new
   def new
     @advisor = Advisor.new
@@ -24,7 +50,6 @@ class AdvisorsController < ApplicationController
 
   def ranking
       @advisors = Advisor.all
-  
   end
 
   # POST /advisors
@@ -35,7 +60,6 @@ class AdvisorsController < ApplicationController
     respond_to do |format|
       if @advisor.save
         @subjects = subject_params.map { |subject_id| Subject.find(subject_id) }
-
         @subjects.each do |subject|
           @advisor.subjects << subject
         end
@@ -53,7 +77,7 @@ class AdvisorsController < ApplicationController
   # PATCH/PUT /advisors/1.json
   def update
     respond_to do |format|
-      if @advisor.update(advisor_params)
+      if @advisor.save
         format.html { redirect_to @advisor, notice: 'Advisor was successfully updated.' }
         format.json { render :show, status: :ok, location: @advisor }
       else
@@ -77,18 +101,26 @@ class AdvisorsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_advisor
     @advisor = Advisor.find(params[:id])
+    if @advisor.advisor_has_subjects[0] != nil then @subject1 = @advisor.advisor_has_subjects[0].id else @subject1 = -1 end
+    if @advisor.advisor_has_subjects[1] != nil then @subject2 = @advisor.advisor_has_subjects[1].id else @subject2 = -1 end
+    if @advisor.advisor_has_subjects[2] != nil then @subject3 = @advisor.advisor_has_subjects[2].id else @subject3 = -1 end
+    if @advisor.advisor_has_subjects[3] != nil then @subject4 = @advisor.advisor_has_subjects[3].id else @subject4 = -1 end
+  end
+
+  def set_student
+    @student = Student.find(@advisor.student_id)
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def form_params
-    params.require(:advisor).permit(:student_university_code, :subject1_id, :subject2_id, :subject3_id, :subject4_id)
+    params.require(:advisor).permit(:university_code, :semester_id, :subject1_id, :subject2_id, :subject3_id, :subject4_id)
   end
 
   def advisor_params
-    temp = form_params
-    student = Student.where(university_code: temp[:student_university_code]).first
-    { student_id: student.id, semester: Environment.last.semester }
+    temp = form_params  
+    { semester_id: temp[:semester_id] }
   end
+
 
   def subject_params
     temp = form_params

@@ -40,5 +40,13 @@
   <%= @student.is_advisor %>
 </p>
 
+<p>
+  <strong>Undergraduates</strong>
+  <% @undergraduates.each do |under| %>
+  <br>
+  <%= Undergraduate.find(under.undergraduate_id).name %>
+  <% end %>
+  <br>
+</p>
 <%= link_to 'Edit', edit_student_path(@student) %> |
 <%= link_to 'Back', students_path %>

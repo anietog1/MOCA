@@ -13,13 +13,14 @@
 
   <tbody>
     <% @advisors.each do |advisor| %>
-    <tr>
-      <td><%= advisor.student.university_username %></td>
-      <td><%= advisor.semester.name %></td>
-      <td><%= link_to 'Show', advisor %></td>
-      <td><%= link_to 'Edit', edit_advisor_path(advisor) %></td>
-      <td><%= link_to 'Destroy', advisor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </tr>
+      <tr>
+        <td><%= advisor.student.university_username %></td>
+        <td><%= advisor.semester.name %></td>
+        <td><%= link_to 'Show', advisor %></td>
+        <td><%= link_to 'Edit', edit_advisor_path(advisor) %></td>
+        <td><%= link_to 'Destroy', advisor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Validate', advisors_validate_path(advisor) if advisor.is_valid.nil? %></td>
+      </tr>
     <% end %>
   </tbody>
 </table>

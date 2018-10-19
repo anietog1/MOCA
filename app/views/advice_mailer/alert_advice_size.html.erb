@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Los cupos para la siguiente monitoría se están agotando:</h1>
+    <p>
+      Materia: <%= @advice.subject.name unless @advice.subject == nil  %><br>
+      Monitor: <%= @advice.advisor.student.full_name %> <br>
+      Día: <%= @advice.day_has_hour.day.name %><br>
+      Hora: <%= @advice.day_has_hour.hour.name %><br>    
+Número de estudiantes registrados: <%= @advice.session_has_students.size %>
+    </p>
+  </body>
+</html>
