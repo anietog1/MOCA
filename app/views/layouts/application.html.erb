@@ -10,6 +10,14 @@
   </head>
 
   <body class='<%= controller.controller_name %>'>
-    <%= yield %>
+
+
+    <div class="container">
+      
+      <ul class="nav nav-tabs">
+        <li> <%= link_to "Home" %> </li>
+      </ul>
+      <%= yield %>
+    </div>
   </body>
 </html>
