@@ -59,11 +59,6 @@ class AdvisorsController < ApplicationController
 
     respond_to do |format|
       if @advisor.save
-        @subjects = subject_params.map { |subject_id| Subject.find(subject_id) }
-        @subjects.each do |subject|
-          @advisor.subjects << subject
-        end
-
         format.html { redirect_to @advisor, notice: 'Advisor was successfully created.' }
         format.json { render :show, status: :created, location: @advisor }
       else
@@ -77,7 +72,7 @@ class AdvisorsController < ApplicationController
   # PATCH/PUT /advisors/1.json
   def update
     respond_to do |format|
-      if @advisor.save
+      if @advisor.update(advisor_params)
         format.html { redirect_to @advisor, notice: 'Advisor was successfully updated.' }
         format.json { render :show, status: :ok, location: @advisor }
       else
@@ -101,34 +96,16 @@ class AdvisorsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_advisor
     @advisor = Advisor.find(params[:id])
-    if @advisor.advisor_has_subjects[0] != nil then @subject1 = @advisor.advisor_has_subjects[0].id else @subject1 = -1 end
-    if @advisor.advisor_has_subjects[1] != nil then @subject2 = @advisor.advisor_has_subjects[1].id else @subject2 = -1 end
-    if @advisor.advisor_has_subjects[2] != nil then @subject3 = @advisor.advisor_has_subjects[2].id else @subject3 = -1 end
-    if @advisor.advisor_has_subjects[3] != nil then @subject4 = @advisor.advisor_has_subjects[3].id else @subject4 = -1 end
   end
 
   def set_student
     @student = Student.find(@advisor.student_id)
   end
-
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def form_params
-    params.require(:advisor).permit(:university_code, :semester_id, :subject1_id, :subject2_id, :subject3_id, :subject4_id)
-  end
-
-  def advisor_params
-    temp = form_params  
-    { semester_id: temp[:semester_id] }
-  end
-
-
-  def subject_params
-    temp = form_params
-    subject_ids = []
-    subject_ids << temp[:subject1_id] unless temp[:subject1_id].nil? || temp[:subject1_id].empty?
-    subject_ids << temp[:subject2_id] unless temp[:subject2_id].nil? || temp[:subject2_id].empty?
-    subject_ids << temp[:subject3_id] unless temp[:subject3_id].nil? || temp[:subject3_id].empty?
-    subject_ids << temp[:subject4_id] unless temp[:subject4_id].nil? || temp[:subject4_id].empty?
-    subject_ids.sort.uniq
-  end
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def advisor_params
+      params.require(:advisor).permit(
+        :student_id, :is_valid,
+        advisor_has_subjects_attributes: [:id, :_destroy, :subject_id]
+      ).merge(semester_id: Environment.last.semester.id)
+    end
 end

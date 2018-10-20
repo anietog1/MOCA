@@ -1,12 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Advisors</h1>
+<h1>Monitores</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Student username</th>
-      <th>Semester</th>
+      <th>Código universitario</th>
+      <th>Semestre</th>
+      <th>Materias</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,8 +15,15 @@
   <tbody>
     <% @advisors.each do |advisor| %>
       <tr>
-        <td><%= advisor.student.university_username %></td>
+        <td><%= advisor.student.university_code %></td>
         <td><%= advisor.semester.name %></td>
+        <td>
+          <ul>
+            <% advisor.subjects.each do |subject| %>
+              <li><%= subject.name %></li>
+            <% end %>
+          </ul>
+        </td>
         <td><%= link_to 'Show', advisor %></td>
         <td><%= link_to 'Edit', edit_advisor_path(advisor) %></td>
         <td><%= link_to 'Destroy', advisor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -24,6 +32,7 @@
     <% end %>
   </tbody>
 </table>
+
 <br>
 <%= link_to 'Ranking', ranking_advisor_path %>
 <%= link_to 'New Advisor', new_advisor_path %> |

@@ -1,69 +1,38 @@
 <% advisor = @advisor %>
-<% def content(form) %>
-  <% if @advisor.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@advisor.errors.count, "error") %> prohibited this advisor from being saved:</h2>
+<% def content(f) %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-      <ul>
-      <% @advisor.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <div class="form-inputs">
+    <%= f.input :student_id, {
+          collection: Student.order(:university_code),
+          label_method: :university_code,
+          value_method: :id,
+          label: 'Código de estudiante',
+          prompt: 'Seleccione un estudiante'
+        }
+    %>
 
-  <div class="field">
-    <%= form.label :university_code, "University code" %>
-    <%= @student.university_code %>
-  </div>
-
-  <div class="field">
-    <%= form.label :subject1_id %>
-    <% if @subject1 != -1 then %>
-    <%= form.collection_select :subject1_id, Subject.all, :id, :name, { :selected => @subject1 } , prompt: true %>
-    <% else %>
-    <%= form.collection_select :subject1_id, Subject.all, :id, :name, prompt: true %>
+    <strong>Materias</strong>
+    <br>
+    <%= f.simple_fields_for :advisor_has_subjects do |advisor_has_subject| %>
+      <%= render 'advisor_has_subject_fields', f: advisor_has_subject %>
     <% end %>
+    <%= link_to_add_association 'Agregar materia', f, :advisor_has_subjects %>
   </div>
 
-  <div class="field">
-    <%= form.label :subject2_id %>
-    <% if @subject2 != -1 then %>
-    <%= form.collection_select :subject2_id, Subject.all, :id, :name, { :selected => @subject2 } , prompt: true %>
-    <% else %>
-    <%= form.collection_select :subject2_id, Subject.all, :id, :name, prompt: true %>
-    <% end %>
-  </div>
-  <div class="field">
-    <%= form.label :subject3_id %>
-    <% if @subject3 != -1 then %>
-    <%= form.collection_select :subject3_id, Subject.all, :id, :name, { :selected => @subject3 } , prompt: true %>
-    <% else %>
-    <%= form.collection_select :subject3_id, Subject.all, :id, :name, prompt: true %>
-    <% end %>
-  </div>
-  <div class="field">
-    <%= form.label :subject4_id %>
-    <% if @subject4 != -1 then %>
-    <%= form.collection_select :subject4_id, Subject.all, :id, :name, { :selected => @subject4 } , prompt: true %>
-    <% else %>
-    <%= form.collection_select :subject4_id, Subject.all, :id, :name, prompt: true %>
-    <% end %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit(@title) %>
+  <div class="form-actions">
+    <%= f.button :submit, @title %>
   </div>
   <% end %>
   
 <% if @url != nil %>
-<%= form_with(model: advisor, url: @url, html: { method: "post"},local:true) do |form| %>
+<%= simple_form_for(advisor, url: @url, html: { method: "post"},local:true) do |form| %>
 <% content(form) %>
 <% end %>
 
 <% else %>
-
-<%= form_with(model: advisor, local:true) do |form| %>
+<%= simple_form_for(advisor) do |form| %>
 <% content(form) %>
 <% end %>
 <% end %>

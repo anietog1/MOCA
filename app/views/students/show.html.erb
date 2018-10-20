@@ -1,52 +1,52 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>First name:</strong>
+  <strong>Primer nombre:</strong>
   <%= @student.first_name %>
 </p>
 
 <p>
-  <strong>Middle name:</strong>
+  <strong>Segundo nombre:</strong>
   <%= @student.middle_name %>
 </p>
 
 <p>
-  <strong>First surname:</strong>
+  <strong>Primer apellido:</strong>
   <%= @student.first_surname %>
 </p>
 
 <p>
-  <strong>Second surname:</strong>
+  <strong>Segundo apellido:</strong>
   <%= @student.second_surname %>
 </p>
 
 <p>
-  <strong>University code:</strong>
+  <strong>Código universitario:</strong>
   <%= @student.university_code %>
 </p>
 
 <p>
-  <strong>University username:</strong>
+  <strong>Usuario universitario:</strong>
   <%= @student.university_username %>
 </p>
 
 <p>
-  <strong>Mobile phone:</strong>
+  <strong>Número telefónico:</strong>
   <%= @student.mobile_phone %>
 </p>
 
 <p>
-  <strong>Is advisor:</strong>
+  <strong>Monitor:</strong>
   <%= @student.is_advisor %>
 </p>
 
 <p>
-  <strong>Undergraduates</strong>
-  <% @undergraduates.each do |under| %>
-  <br>
-  <%= Undergraduate.find(under.undergraduate_id).name %>
-  <% end %>
-  <br>
+  <strong>Pregrado(s):</strong>
+  <ul>
+    <% @student.undergraduates.each do |undergraduate| %>
+      <li><%= undergraduate.name %></li>
+    <% end %>
+  </ul>
 </p>
 <%= link_to 'Edit', edit_student_path(@student) %> |
 <%= link_to 'Back', students_path %>

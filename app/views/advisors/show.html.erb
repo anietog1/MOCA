@@ -1,26 +1,29 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Student username:</strong>
-  <%= @advisor.student.university_username %>
+  <strong>Código universitario:</strong>
+  <%= @advisor.student.university_code %>
 </p>
 
 <p>
-  <strong>Semester:</strong>
+  <strong>Semestre:</strong>
   <%= @advisor.semester.name %>
 </p>
 
 <p>
   <strong>Subjects:</strong>
-  <% @advisor.subjects.each do |subject| %>
-  <%= subject.name %><br>
-  <% end %>
+  <ul>
+    <% @advisor.subjects.each do |subject| %>
+      <li><%= subject.name %></li>
+    <% end %>
+  </ul>
 </p>
 
 <p>
   <strong>Grade:</strong>
   <%= @advisor.student.advisor_grade %>
 </p>
+
 
 <%= link_to 'Schedule', advisor_schedule_path(@advisor), method: :get %> |
 <%= link_to 'Edit', edit_advisor_path(@advisor) %> |
