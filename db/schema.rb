@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_19_220525) do
+ActiveRecord::Schema.define(version: 2018_10_18_144220) do
 
   create_table "advisor_has_subjects", force: :cascade do |t|
     t.integer "advisor_id", null: false
@@ -23,12 +23,28 @@ ActiveRecord::Schema.define(version: 2018_09_19_220525) do
 
   create_table "advisors", force: :cascade do |t|
     t.integer "student_id", null: false
-    t.integer "term_id", null: false
     t.boolean "is_valid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "semester_id"
+    t.index ["semester_id"], name: "index_advisors_on_semester_id"
     t.index ["student_id"], name: "index_advisors_on_student_id"
-    t.index ["term_id"], name: "index_advisors_on_term_id"
+  end
+
+  create_table "attendances", force: :cascade do |t|
+    t.integer "student_id", null: false
+    t.integer "meeting_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["meeting_id"], name: "index_attendances_on_meeting_id"
+    t.index ["student_id"], name: "index_attendances_on_student_id"
+  end
+
+  create_table "classrooms", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_classrooms_on_name", unique: true
   end
 
   create_table "day_has_hours", force: :cascade do |t|
@@ -47,6 +63,18 @@ ActiveRecord::Schema.define(version: 2018_09_19_220525) do
     t.index ["name"], name: "index_days_on_name", unique: true
   end
 
+  create_table "environments", force: :cascade do |t|
+    t.boolean "is_students_register_active", default: false, null: false
+    t.boolean "is_advisors_register_active", default: false, null: false
+    t.boolean "is_schedules_register_active", default: false, null: false
+    t.integer "semester_id", null: false
+    t.integer "month_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["month_id"], name: "index_environments_on_month_id"
+    t.index ["semester_id"], name: "index_environments_on_semester_id"
+  end
+
   create_table "hours", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -54,17 +82,31 @@ ActiveRecord::Schema.define(version: 2018_09_19_220525) do
     t.index ["name"], name: "index_hours_on_name", unique: true
   end
 
-  create_table "people", force: :cascade do |t|
-    t.boolean "gay"
+  create_table "meetings", force: :cascade do |t|
+    t.integer "session_id", null: false
+    t.date "date", null: false
+    t.integer "classroom_id"
+    t.boolean "is_canceled", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["classroom_id"], name: "index_meetings_on_classroom_id"
+    t.index ["session_id"], name: "index_meetings_on_session_id"
   end
 
-  create_table "personas", force: :cascade do |t|
-    t.boolean "student"
-    t.boolean "worker"
+  create_table "months", force: :cascade do |t|
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_months_on_name", unique: true
+  end
+
+  create_table "semesters", force: :cascade do |t|
+    t.string "name", null: false
+    t.date "start_date", null: false
+    t.date "end_date", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_semesters_on_name", unique: true
   end
 
   create_table "session_has_students", force: :cascade do |t|
@@ -77,16 +119,16 @@ ActiveRecord::Schema.define(version: 2018_09_19_220525) do
   end
 
   create_table "sessions", force: :cascade do |t|
-    t.integer "term_id", null: false
     t.integer "advisor_id", null: false
     t.integer "day_has_hour_id", null: false
     t.integer "subject_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "month_id", null: false
     t.index ["advisor_id"], name: "index_sessions_on_advisor_id"
     t.index ["day_has_hour_id"], name: "index_sessions_on_day_has_hour_id"
+    t.index ["month_id"], name: "index_sessions_on_month_id"
     t.index ["subject_id"], name: "index_sessions_on_subject_id"
-    t.index ["term_id"], name: "index_sessions_on_term_id"
   end
 
   create_table "student_has_undergraduates", force: :cascade do |t|
@@ -110,6 +152,7 @@ ActiveRecord::Schema.define(version: 2018_09_19_220525) do
     t.boolean "is_valid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "advisor_grade"
     t.index ["university_code"], name: "index_students_on_university_code", unique: true
     t.index ["university_username"], name: "index_students_on_university_username", unique: true
   end
@@ -121,13 +164,22 @@ ActiveRecord::Schema.define(version: 2018_09_19_220525) do
     t.index ["name"], name: "index_subjects_on_name", unique: true
   end
 
-  create_table "terms", force: :cascade do |t|
-    t.string "name", null: false
-    t.date "start_date", null: false
-    t.date "end_date", null: false
+  create_table "surveys", force: :cascade do |t|
+    t.integer "session_has_student_id", null: false
+    t.integer "satisfaction", null: false
+    t.integer "contribution", null: false
+    t.integer "conditions", null: false
+    t.integer "domain", null: false
+    t.integer "clarity", null: false
+    t.integer "ability", null: false
+    t.integer "treat", null: false
+    t.integer "method", null: false
+    t.text "fears", null: false
+    t.text "impact", null: false
+    t.text "comments"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_terms_on_name", unique: true
+    t.index ["session_has_student_id"], name: "index_surveys_on_session_has_student_id"
   end
 
   create_table "undergraduates", force: :cascade do |t|
@@ -135,6 +187,21 @@ ActiveRecord::Schema.define(version: 2018_09_19_220525) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_undergraduates_on_name", unique: true
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.integer "student_id"
+    t.integer "kind", default: 2, null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["student_id"], name: "index_users_on_student_id"
   end
 
 end

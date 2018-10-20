@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
-  before_action :set_student, only: [:show, :edit, :update, :destroy]
+  before_action :set_student, only: [:show, :edit, :update, :destroy, :validate, :reject, :accept]
 
   # GET /students
   # GET /students.json
@@ -7,9 +7,29 @@ class StudentsController < ApplicationController
     @students = Student.all
   end
 
+  def reject
+    @student.is_valid = false
+    respond_to do |format|
+      if @student.save
+        format.html { redirect_to students_path, notice: 'Student was successfully rejected.' }
+        format.json { render :index, status: :created, location: @student }
+     
+ else
+        format.html { render :index }
+        format.json { render json: @student.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def accept
+    @student.is_valid = true
+    update()
+  end
+  
   # GET /students/1
   # GET /students/1.json
   def show
+    @undergraduates = @student.student_has_undergraduates
   end
 
   # GET /students/new
@@ -25,18 +45,23 @@ class StudentsController < ApplicationController
   # POST /students.json
   def create
     @student = Student.new(student_params)
-    @student.undergraduates << Undergraduate.find(form_params[:undergraduate_id])
+
     respond_to do |format|
       if @student.save
         format.html { redirect_to @student, notice: 'Student was successfully created.' }
         format.json { render :show, status: :created, location: @student }
-      else
+     
+ else
         format.html { render :new }
         format.json { render json: @student.errors, status: :unprocessable_entity }
       end
     end
   end
 
+
+  def validate
+  end
+  
   # PATCH/PUT /students/1
   # PATCH/PUT /students/1.json
   def update
@@ -69,16 +94,13 @@ class StudentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
-      { first_name: form_params[:first_name],
-        middle_name: form_params[:middle_name],
-        first_surname: form_params[:first_surname],
-        second_surname: form_params[:second_surname],
-        university_code: form_params[:university_code],
-        university_username: form_params[:university_username],
-        mobile_phone: form_params[:mobile_phone] }      
-    end
-
-    def form_params
-      params.require(:student).permit(:first_name, :middle_name, :first_surname, :second_surname, :university_code, :university_username, :mobile_phone, :is_advisor, :is_valid, :undergraduate_id )
+      params.require(:student).permit(
+        :first_name, :middle_name,
+        :first_surname, :second_surname,
+        :university_code, :university_username,
+        :mobile_phone, :is_valid,
+        :is_advisor, :advisor_grade,
+        student_has_undergraduates_attributes: [:id, :_destroy, :undergraduate_id]
+      )
     end
 end

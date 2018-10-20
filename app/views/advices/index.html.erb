@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>Id</th>
       <th>Periodo</th>
       <th>Día</th>
       <th>Hora</th>
@@ -16,17 +17,22 @@
   </thead>
 
   <tbody>
-    <% @sessions.each do |session| %>
-      <tr>
-        <td><%= session.term.name %></td>
-        <td><%= session.day_has_hour.day.name %></td>
-        <td><%= session.day_has_hour.hour.name %></td>
-        <td><%= session.subject.name unless session.subject.nil? %></td>
-        <td><%= session.advisor.student.university_username %></td>
-        <td><%= session.students.size %></td>
-        <td><%= link_to 'Ver' %></td>
-        <td><%= link_to 'Editar' %></td>
-      </tr>
+    <% @advices.each do |advice| %> 
+    <tr>
+      <td><%= advice.id %></td>
+      <td><%= advice.month.name %></td>
+      <td><%= advice.day_has_hour.day.name %></td>
+      <td><%= advice.day_has_hour.hour.name %></td>
+      <td><%= advice.subject.name unless advice.subject == nil %></td>
+      <td><%= advice.advisor.student.full_name %></td>
+      <td><% advice.session_has_students.each do |shs| %>
+        <%= shs.student.full_name %><br>
+        <% end %>
+      </td>
+      
+      <!-- Is missing      <td><%= link_to 'Ver' %></td>
+           <td><%= link_to 'Editar' %></td>
+           -->    </tr>
     <% end %>
   </tbody>
 </table>

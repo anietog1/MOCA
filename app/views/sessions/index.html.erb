@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Monitorías</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Periodo</th>
+      <th>Día</th>
+      <th>Hora</th>
+      <th>Materia</th>
+      <th>Monitor</th>
+      <th>Estudiantes</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sessions.each do |session| %>
+    <tr>
+      <td><%= session.month.name %></td>
+      <td><%= session.day_has_hour.day.name %></td>
+      <td><%= session.day_has_hour.hour.name %></td>
+      <td><%= session.subject.name unless session.subject.nil? %></td>
+      <td><%= session.advisor.student.university_username %></td>
+      <td><%= session.students.size %></td>
+      <td><%= link_to 'Ver' %></td>
+      <td><%= link_to 'Editar' %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Nueva Monitoría', new_session_path %> |
+<%= link_to 'Volver', root_path %>

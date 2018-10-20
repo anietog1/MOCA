@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Entornos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Permitido el registro de monitores</th>
+      <th>Permitido el registro de estudiantes</th>
+      <th>Permitido el registro de horario</th>
+      <th>Semestre</th>
+      <th>Mes</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @environments.each do |environment| %>
+      <tr>
+        <td><%= environment.is_advisors_register_active %></td>
+        <td><%= environment.is_students_register_active %></td>
+        <td><%= environment.is_schedules_register_active %></td>
+        <td><%= environment.semester.name %></td>
+        <td><%= environment.month.name %></td>
+        <td><%= link_to 'Ver', environment %></td>
+        <td><%= link_to 'Editar', edit_environment_path(environment) %></td>
+        <td><%= link_to 'Destruir', environment, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nuevo Entorno', new_environment_path %> |
+<%= link_to 'Volver', root_path %>

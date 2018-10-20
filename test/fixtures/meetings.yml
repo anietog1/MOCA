@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  session: one
+  date: 2018-09-29
+  classroom: one
+  is_canceled: false
+
+two:
+  session: two
+  date: 2018-09-29
+  classroom: two
+  is_canceled: false

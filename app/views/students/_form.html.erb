@@ -1,57 +1,37 @@
-<%= form_with(model: student, local: true) do |form| %>
-  <% if student.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(student.errors.count, "error") %> prohibited this student from being saved:</h2>
+<% student = @student %>
+<% def content(f) %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  <div class="form-inputs">
+    <%= f.input :first_name, label: 'Primer nombre' %>
+    <%= f.input :middle_name, label: 'Segundo nombre' %>
+    <%= f.input :first_surname, label: 'Primer apellido' %>
+    <%= f.input :second_surname, label: 'Segundo apellido' %>
+    <%= f.input :university_code, label: 'Código universitario' %>
+    <%= f.input :university_username, label: 'Usuario universitario' %>
+    <%= f.input :mobile_phone, label: 'Número telefónico' %>
 
-      <ul>
-      <% student.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :first_name %>
-    <%= form.text_field :first_name %>
+    <strong>Pregrados</strong>
+    <br>
+    <%= f.simple_fields_for :student_has_undergraduates do |student_has_undergraduate| %>
+      <%= render 'student_has_undergraduate_fields', f: student_has_undergraduate %>
+    <% end %>
+    <%= link_to_add_association 'Agregar pregrado', f, :student_has_undergraduates %>
   </div>
 
-  <div class="field">
-    <%= form.label :middle_name %>
-    <%= form.text_field :middle_name %>
+  <div class="form-actions">
+    <%= f.button :submit, @title %>
   </div>
+<% end %>
 
-  <div class="field">
-    <%= form.label :first_surname %>
-    <%= form.text_field :first_surname %>
-  </div>
-
-  <div class="field">
-    <%= form.label :second_surname %>
-    <%= form.text_field :second_surname %>
-  </div>
-
-  <div class="field">
-    <%= form.label :university_code %>
-    <%= form.text_field :university_code %>
-  </div>
-
-  <div class="field">
-    <%= form.label :university_username %>
-    <%= form.text_field :university_username %>
-  </div>
-
-  <div class="field">
-    <%= form.label :mobile_phone %>
-    <%= form.text_field :mobile_phone %>
-  </div>
+<% if @url != nil then %>
+<%= simple_form_for(student,url: @url, html: { method: "post" },local: true) do |f| %>
+<% content(f) %>
+<% end %>
   
-  <div class="field">
-    <%= form.label :undergraduate_id %>
-    <%= form.collection_select :undergraduate_id, Undergraduate.all, :id, :name, prompt: true %>
-  </div>
+<% else %>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+<%= simple_form_for(student) do |f| %>
+<% content(f) %>
+<% end %>
 <% end %>
