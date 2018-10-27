@@ -77,3 +77,6 @@ gem 'jquery-rails'
 
 # Cocoon for adding fields on the fly
 gem 'cocoon'
+
+# Graphics for statistics
+gem 'chartkick'

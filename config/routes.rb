@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+
+
+  get 'statistics_for_advices/index'
+  root 'welcome#index'
+
+  # Routes for statistics' graphics
+  get 'statistics_for_advices', to: 'statistics_for_advices#index', as: 'advices_statistics'
+  
+
+  
   get 'students/validate/:id', to: 'students#validate', as: 'students_validate'
   post 'students/accept/:id', to: 'students#accept', as: 'students_accept'
   post 'students/reject/:id', to: 'students#reject', as: 'students_reject'
@@ -10,9 +20,7 @@ Rails.application.routes.draw do
   post 'advices/create', to: 'advices#create', as: 'advice_create'
   get 'advices', to: 'advices#index', as: 'advices'
   get 'advices/new', to: 'advices#new', as: 'new_advice'
-  get 'advices/show', to: 'advices#show',as: ''
 
-  root 'welcome#index'
   devise_for :users
   
   resources :environments
