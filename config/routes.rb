@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  post 'advisors/:advisor_id/grade', to: 'grades#update', as: 'advisor_grade'
+  get 'advisors/ranking', to: 'advisors#ranking', as: 'ranking_advisor'
+
   get 'students/validate/:id', to: 'students#validate', as: 'students_validate'
   post 'students/accept/:id', to: 'students#accept', as: 'students_accept'
   post 'students/reject/:id', to: 'students#reject', as: 'students_reject'
@@ -25,10 +28,9 @@ Rails.application.routes.draw do
  
   resources :advisors do
     resource :schedule, only: [:show, :new, :create]
+    resource :grade, only: [:show, :update]
   end
 
-  post 'advisors/:advisor_id/grade', to: 'grades#update', as: 'advisor_grade'
-  get 'advisors/ranking', to: 'advisors#ranking', as: 'ranking_advisor'
 
   resources :surveys
 
