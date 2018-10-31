@@ -1,0 +1,10 @@
+<nav class="navbar nav-default" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <% if user_signed_in? %>
+      <%= link_to "Home", getHomeRoute,  class: "navbar-brand" %>
+      <%= link_to "Sign out", destroy_user_session_path,  class: "btn btn-outline-primary btn-book my-2 my-sm-0", method: :delete %>
+      <% end %>
+      </div>
+  </div>
+</nav>

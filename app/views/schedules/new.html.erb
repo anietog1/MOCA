@@ -1,8 +1,8 @@
-<h1>Registro de horario</h1>
+<h1>Schedule registry</h1>
 
 <%= form_for(:sessions, url: url_for(controller: "schedules", action: "create")) do |f| %>
   <div class="schedule-div">
-    <table class="schedule">
+    <table class="table">
       <thead>
         <tr>
           <th>Hora</th>
@@ -27,9 +27,9 @@
 
   <br>
 
-  <%= f.submit "Guardar Horario" %>
+  <%= f.submit "Save Schedule" %>
 <% end %>
 
 <br>
 
-<%= link_to 'Volver', advisor_schedule_path(@advisor) %>
+<%= link_to 'Back', advisor_schedule_path(@advisor), class: 'btn' %>

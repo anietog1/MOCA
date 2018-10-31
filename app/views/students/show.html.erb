@@ -39,14 +39,18 @@
   <strong>Monitor:</strong>
   <%= @student.is_advisor %>
 </p>
-
+<% names = ["Calculo 3"] %>
 <p>
   <strong>Pregrado(s):</strong>
   <ul>
     <% @student.undergraduates.each do |undergraduate| %>
-      <li><%= undergraduate.name %></li>
+    <li><%= undergraduate.name %></li>
+    <% names << undergraduate.name %>
     <% end %>
   </ul>
 </p>
+
+<button type="button" class="btn btn-link has-popover" data-toggle="popover" title="Pregrades" data-content="<%= names.join(", ") %>">View notes (popover)</button>
+
 <%= link_to 'Edit', edit_student_path(@student) %> |
 <%= link_to 'Back', students_path %>

@@ -1,0 +1,41 @@
+<div class="card" style="max-width: 40rem; margin: auto">
+  <div class="card-header">Next Advice</div>
+  <div class="card-body">
+    <strong>Date</strong>
+    <p><%= @student %></p>
+    <%= button_to "Options",  new_user_session_path, class: 'btn btn-primary' %>
+  </div>
+</div>
+<br>
+<div class="card">
+  <div class="card-header">Your Advices</div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Periodo</th>
+        <th>Día</th>
+        <th>Hora</th>
+        <th>Materia</th>
+        <th>Monitor</th>
+        <th colspan="4"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @advices.each do |advice| %> 
+      <tr>
+        <td><%= advice.id %></td>
+        <td><%= advice.month.name %></td>
+        <td><%= advice.day_has_hour.day.name %></td>
+        <td><%= advice.day_has_hour.hour.name %></td>
+        <td><%= advice.subject.name unless advice.subject == nil %></td>
+        <td><%= advice.advisor.student.full_name %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= link_to 'New Advice', new_advice_path, class: 'btn' %>
+
+</div>

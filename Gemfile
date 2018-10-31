@@ -80,3 +80,7 @@ gem 'cocoon'
 
 # Bootstrap
 gem 'bootstrap'
+
+# Recomended gem to "automatically adds the proper vendor prefixes to your CSS"
+gem 'autoprefixer-rails'
+

@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'welcome/student'
+  get 'welcome/admin'
+  get 'welcome/super_admin'
+  get 'welcome/advisor'
   get 'students/validate/:id', to: 'students#validate', as: 'students_validate'
   post 'students/accept/:id', to: 'students#accept', as: 'students_accept'
   post 'students/reject/:id', to: 'students#reject', as: 'students_reject'
@@ -12,7 +16,9 @@ Rails.application.routes.draw do
   get 'advices/new', to: 'advices#new', as: 'new_advice'
   get 'advices/show', to: 'advices#show',as: ''
 
+  # Main page
   root 'welcome#index'
+  
   devise_for :users
   
   resources :environments
