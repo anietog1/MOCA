@@ -48,5 +48,16 @@
     <% end %>
   </ul>
 </p>
+
+<p>  
+  <strong>Monitoria(s):</strong>
+  <ul>
+    <% @student.session_has_students.each do |session_has_student| %>
+      <li><%= session_has_student.id %></li> 
+      <%= link_to 'Survey', new_survey_path(id: session_has_student.id) %>    
+    <% end %>
+  </ul>
+</p>
+
 <%= link_to 'Edit', edit_student_path(@student) %> |
 <%= link_to 'Back', students_path %>
