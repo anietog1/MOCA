@@ -5,7 +5,7 @@ module ApplicationHelper
     elsif current_user.kind == 1
       return welcome_admin_path
     elsif current_user.kind == 2
-      return welcome_student_path
+      return student_path(id: current_user.student_id)
     elsif current_user.kind == 3
       return welcome_advisor_path
     end

@@ -2,13 +2,13 @@ class WelcomeController < ApplicationController
   def index
     if user_signed_in?
       if current_user.kind == 0
-        render "super_admin"
+        redirect_to welcome_super_admin_path
       elsif current_user.kind == 1
-        render "admin"
+        redirect_to welcome_admin_path
       elsif current_user.kind == 2
-        render "student"
+        redirect_to student_path(id: current_user.student_id)
       elsif current_user.kind == 3
-        render "advisor"
+        redirect_to welcome_advisor
       end
     end
   end

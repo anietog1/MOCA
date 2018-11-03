@@ -5,50 +5,56 @@
 
 <div class="field form-group">
   <div class="col-sm-10">
-    <%= f.input :first_name, label: 'Primer nombre: ' %>
+    <%= f.input :first_name, label: 'First name: ' %>
   </div>
 </div>
 
 <div class="field form-group">
   <div class="col-sm-10">
-    <%= f.input :middle_name, label: 'Segundo nombre: ' %>
+    <%= f.input :middle_name, label: 'Second name: ' %>
   </div>
 </div>
 
 <div class="field form-group">
   <div class="col-sm-10">
-    <%= f.input :first_surname, label: 'Primer apellido: ' %>
+    <%= f.input :first_surname, label: 'Last surname: ' %>
   </div>
 </div>
 
 
 <div class="field form-group">
   <div class="col-sm-10">
-    <%= f.input :second_surname, label: 'Segundo apellido: ' %>
+    <%= f.input :second_surname, label: 'Second surname: ' %>
   </div>
 </div>
 
 <div class="field form-group">
   <div class="col-sm-10">
-    <%= f.input :university_code, label: 'Código universitario: ' %>
+    <%= f.input :university_code, label: 'University code: ' %>
   </div>
 </div>
 <div class="field form-group">
   <div class="col-sm-10">
-    <%= f.input :university_username, label: 'Usuario universitario: ' %>
+    <%= f.input :university_username, label: 'University username: ' %>
   </div>
 </div>
 <div class="field form-group">
   <div class="col-sm-10">
-    <%= f.input :mobile_phone, label: 'Número telefónico ' %>
+    <%= f.input :mobile_phone, label: 'Phone number: ' %>
   </div>
 </div>
-<strong>Pregrados</strong>
+<div>
+<strong>Pregrades:</strong>
+</div>
+<br>
 <div class="field form-group">
-    <%= f.simple_fields_for :student_has_undergraduates do |student_has_undergraduate| %>
-    <%= render 'student_has_undergraduate_fields', f: student_has_undergraduate %>
-    <% end %>
-       <%= link_to_add_association 'Agregar pregrado', f, :student_has_undergraduates %>
+  <%= f.simple_fields_for :student_has_undergraduates do |student_has_undergraduate| %>
+  <%= render 'student_has_undergraduate_fields', f: student_has_undergraduate %>
+  <br>
+  <% end %>
+</div>
+<div class="field form-group">
+  <%= link_to_add_association 'Add pregrade', f, :student_has_undergraduates %>
 </div>
 
 <div class="actions">

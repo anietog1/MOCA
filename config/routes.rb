@@ -37,8 +37,6 @@ Rails.application.routes.draw do
   get 'advisors/ranking', to: 'advisors#ranking', as: 'ranking_advisor'
 
   resources :surveys
-
-
   resources :downloads, only: :index
   namespace :downloads do
     get :students
