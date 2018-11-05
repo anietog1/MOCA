@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   post 'advices/create', to: 'advices#create', as: 'advice_create'
   get 'advices', to: 'advices#index', as: 'advices'
   get 'advices/new', to: 'advices#new', as: 'new_advice'
-  get 'advices/show', to: 'advices#show',as: ''
 
   # Main page
   root 'welcome#index'
