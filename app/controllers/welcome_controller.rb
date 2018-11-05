@@ -8,7 +8,7 @@ class WelcomeController < ApplicationController
       elsif current_user.kind == 2
         redirect_to student_path(id: current_user.student_id)
       elsif current_user.kind == 3
-        redirect_to welcome_advisor
+        redirect_to advisor_path(id: Advisor.where(student_id: current_user.student_id).first)
       end
     end
   end

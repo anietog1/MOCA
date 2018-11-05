@@ -1,38 +1,45 @@
 <% advisor = @advisor %>
 <% def content(f) %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+<%= f.error_notification %>
+<%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-inputs">
-    <%= f.input :student_id, {
-          collection: Student.order(:university_code),
-          label_method: :university_code,
-          value_method: :id,
-          label: 'Código de estudiante',
-          prompt: 'Seleccione un estudiante'
-        }
-    %>
+<div class="form-inputs">
+  <%= f.input :student_id, {
+      collection: Student.order(:university_code),
+      label_method: :university_code,
+      value_method: :id,
+      label: 'University code: ',
+      label_html: { class: 'label' },
+      prompt: 'Select a student'
+      }
+      %>
 
-    <strong>Materias</strong>
-    <br>
-    <%= f.simple_fields_for :advisor_has_subjects do |advisor_has_subject| %>
+  <div class="label">
+    <strong>Subjects:</strong>
+  </div>
+
+  <div id="pregrades_space">
+    <div>
+      <%= f.simple_fields_for :advisor_has_subjects do |advisor_has_subject| %>
       <%= render 'advisor_has_subject_fields', f: advisor_has_subject %>
-    <% end %>
-    <%= link_to_add_association 'Agregar materia', f, :advisor_has_subjects %>
+      <% end %>
+    </div>
+    <div>
+      <%= link_to_add_association 'Add subject', f, :advisor_has_subjects %>
+    </div>
   </div>
-
-  <div class="form-actions">
+<br>  
     <%= f.button :submit, @title %>
-  </div>
+
   <% end %>
   
-<% if @url != nil %>
-<%= simple_form_for(advisor, url: @url, html: { method: "post"},local:true) do |form| %>
-<% content(form) %>
-<% end %>
+  <% if @url != nil %>
+  <%= simple_form_for(advisor, url: @url, html: { method: "post"},local:true) do |form| %>
+  <% content(form) %>
+  <% end %>
 
-<% else %>
-<%= simple_form_for(advisor) do |form| %>
-<% content(form) %>
-<% end %>
-<% end %>
+  <% else %>
+  <%= simple_form_for(advisor) do |form| %>
+  <% content(form) %>
+  <% end %>
+  <% end %>

@@ -3,58 +3,37 @@
 <%= f.error_notification %>
 <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-<div class="field form-group">
-  <div class="col-sm-10">
-    <%= f.input :first_name, label: 'First name: ' %>
-  </div>
-</div>
+<div class="form-inputs">
+  <%= f.input :first_name, label: 'First name: ', label_html: { class: 'label' } %>
 
-<div class="field form-group">
-  <div class="col-sm-10">
-    <%= f.input :middle_name, label: 'Second name: ' %>
-  </div>
-</div>
+  <%= f.input :middle_name, label: 'Second name: ', label_html: { class: 'label' } %>
 
-<div class="field form-group">
-  <div class="col-sm-10">
-    <%= f.input :first_surname, label: 'Last surname: ' %>
-  </div>
-</div>
+  <%= f.input :first_surname, label: 'Last surname: ', label_html: { class: 'label' } %>
 
+  <%= f.input :second_surname, label: 'Second surname: ', label_html: { class: 'label' } %>
 
-<div class="field form-group">
-  <div class="col-sm-10">
-    <%= f.input :second_surname, label: 'Second surname: ' %>
-  </div>
-</div>
+  <%= f.input :university_code, label: 'University code: ', label_html: { class: 'label' } %>
 
-<div class="field form-group">
-  <div class="col-sm-10">
-    <%= f.input :university_code, label: 'University code: ' %>
+  <%= f.input :university_username, label: 'University username: ' , label_html: { class: 'label' } %>
+
+  <%= f.input :mobile_phone, label: 'Mobile phone: ' , label_html: { class: 'label' } %>
+
+  <div class="label">
+    <strong>Pregrades:</strong>
   </div>
-</div>
-<div class="field form-group">
-  <div class="col-sm-10">
-    <%= f.input :university_username, label: 'University username: ' %>
+
+  <div id="pregrades_space">
+    <div class="field form-group">
+      <%= f.simple_fields_for :student_has_undergraduates do |student_has_undergraduate| %>
+      <%= render 'student_has_undergraduate_fields', f: student_has_undergraduate %>
+      <% end %>
+    </div>
+
+    <div class="field form-group">
+      <%= link_to_add_association 'Add pregrade', f, :student_has_undergraduates %>
+    </div>
   </div>
-</div>
-<div class="field form-group">
-  <div class="col-sm-10">
-    <%= f.input :mobile_phone, label: 'Phone number: ' %>
-  </div>
-</div>
-<div>
-<strong>Pregrades:</strong>
-</div>
-<br>
-<div class="field form-group">
-  <%= f.simple_fields_for :student_has_undergraduates do |student_has_undergraduate| %>
-  <%= render 'student_has_undergraduate_fields', f: student_has_undergraduate %>
-  <br>
-  <% end %>
-</div>
-<div class="field form-group">
-  <%= link_to_add_association 'Add pregrade', f, :student_has_undergraduates %>
+
 </div>
 
 <div class="actions">

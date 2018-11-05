@@ -1,6 +1,10 @@
-<h1>Editando monitor</h1>
+<h1>Edit advisor</h1>
 
 <%= render 'form', advisor: @advisor %>
-
-<%= link_to 'Ver', @advisor %> |
-<%= link_to 'Volver', advisors_path %>
+<hr>
+<% if current_user.kind == 1 or current_user.kind == 0 %>
+<%= link_to 'Show', @advisor, class: 'btn' %> |
+<%= link_to 'Back', advisors_path %>
+<% else %>
+<%= link_to 'Back', @advisor %>
+<% end %>

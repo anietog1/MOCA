@@ -7,7 +7,7 @@ module ApplicationHelper
     elsif current_user.kind == 2
       return student_path(id: current_user.student_id)
     elsif current_user.kind == 3
-      return welcome_advisor_path
+      return advisor_path(id: Advisor.where(student_id: current_user.student_id).first)
     end
   end
 end

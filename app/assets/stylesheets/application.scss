@@ -17,3 +17,28 @@
 .title {
     color: white;
 }
+
+#pregrades_space {
+    border-style: solid;
+    padding: 25px 25px 25px 25px;
+    border-color: lightblue;
+    margin-bottom: 20px;
+    // auto-size to its content
+    display: inline-block;
+}
+
+
+.pregrade{
+    margin-bottom: 30px;
+}
+
+.label {
+    margin-right: 10px;
+    margin-bottom: 30px;
+    width: 15%;
+}
+
+p {
+    font-size: 15px;
+    margin-bottom: 20px;
+}
