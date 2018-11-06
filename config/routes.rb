@@ -15,28 +15,36 @@ Rails.application.routes.draw do
   get 'advices/new', to: 'advices#new', as: 'new_advice'
   get 'advices/show', to: 'advices#show',as: ''
 
-  root 'welcome#index'
-  devise_for :users
   
-  resources :environments
-  resources :semesters
-  resources :subjects
-  resources :undergraduates
-  resources :students
-  resources :classrooms
-  resources :sessions, only: [:index, :new, :create]
+  scope '/(:locale)', defaults: { locale: 'es' }, constraints: { locale: /es|en/ } do
+
+   devise_for :users
  
-  resources :advisors do
-    resource :schedule, only: [:show, :new, :create]
-    resource :grade, only: [:show, :update]
-  end
+   resources :environments
+   resources :semesters
+   resources :subjects
+   resources :undergraduates
+ 
+   resources :students
+    
+
+   resources :classrooms
+   resources :sessions, only: [:index, :new, :create]
+ 
+   resources :advisors do
+     resource :schedule, only: [:show, :new, :create]
+     resource :grade, only: [:show, :update]
+   end
 
 
-  resources :surveys
+   resources :surveys
 
 
-  resources :downloads, only: :index
-  namespace :downloads do
-    get :students
-  end
+   resources :downloads, only: :index
+   namespace :downloads do
+     get :students
+   end
+   get '/', to: 'welcome#index'
+   root 'welcome#index'
+ end
 end
