@@ -11,3 +11,7 @@ es:
   classrooms: 'Aulas'
   environments: 'Entornos'
   downloads: 'Descargas'
+  translate: 'Traducir'
+  u_c: 'Codigo universitario'
+  semester: 'Semestre'
+  admin: 'Pagina de administradores'

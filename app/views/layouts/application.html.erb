@@ -1,7 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <%= t('site_title')%> | <%= t('site_name')%>
+    <%= t('site_title')%> | <%= t('site_name')%> 
+    <% if I18n.locale == I18n.default_locale %>
+      <%= link_to "English", { :locale=>'es' } %>
+
+    <% else %>
+     <%= link_to "Espanish", { :locale=>'en' } %>
+
+<%end%>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 

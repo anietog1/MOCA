@@ -2,7 +2,7 @@
 en:
   site_title: 'This is the english version'
   site_name: 'My Site'
-  welcome: 'Wellcome to MOCA'
+  welcome: 'Welcome to MOCA'
   students: 'Students'
   advisors: 'Advisors'
   advices: 'Advices'
@@ -12,3 +12,7 @@ en:
   classrooms: 'Classrooms'
   environments: 'Environments'
   downloads: 'Downloads'
+  translate: 'translate'
+  u_c: 'University code'
+  semester: 'Semester'
+  admin: 'Admins page'
