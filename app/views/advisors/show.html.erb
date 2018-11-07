@@ -1,17 +1,17 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Código universitario:</strong>
+  <strong><%= t('u_c') %></strong>
   <%= @advisor.student.university_code %>
 </p>
 
 <p>
-  <strong>Semestre:</strong>
+ <strong><%= t('semester') %></strong>
   <%= @advisor.semester.name %>
 </p>
 
 <p>
-  <strong>Subjects:</strong>
+   <strong><%= t('subjects') %></strong>
   <ul>
     <% @advisor.subjects.each do |subject| %>
       <li><%= subject.name %></li>
@@ -20,7 +20,7 @@
 </p>
 
 <p>
-  <strong>Grade:</strong>
+  <strong><%= t('grade') %></strong>
   <%= @advisor.student.advisor_grade %>
 </p>
 

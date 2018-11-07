@@ -3,10 +3,10 @@
   <head>
     <%= t('site_title')%> | <%= t('site_name')%> 
     <% if I18n.locale == I18n.default_locale %>
-      <%= link_to "English", { :locale=>'es' } %>
+      <%= link_to "Español", { :locale=>'es' } %>
 
     <% else %>
-     <%= link_to "Espanish", { :locale=>'en' } %>
+     <%= link_to "English", { :locale=>'en' } %>
 
 <%end%>
     <%= csrf_meta_tags %>

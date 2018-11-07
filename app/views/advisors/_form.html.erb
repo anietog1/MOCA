@@ -12,8 +12,7 @@
           prompt: 'Seleccione un estudiante'
         }
     %>
-
-    <strong>Materias</strong>
+    <strong><%= t('subjects') %></strong>
     <br>
     <%= f.simple_fields_for :advisor_has_subjects do |advisor_has_subject| %>
       <%= render 'advisor_has_subject_fields', f: advisor_has_subject %>

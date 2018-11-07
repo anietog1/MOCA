@@ -25,10 +25,10 @@
             <% end %>
           </ul>
         </td>
-        <td><%= link_to 'Show', advisor %></td>
-        <td><%= link_to 'Edit', edit_advisor_path(advisor) %></td>
-        <td><%= link_to 'Destroy', advisor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Validate', advisors_validate_path(advisor) if advisor.is_valid.nil? %></td>
+        <td><%= link_to t('show'), advisor %></td>
+        <td><%= link_to t('edit'), edit_advisor_path(advisor) %></td>
+        <td><%= link_to t('destroy'), advisor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to t('validate'), advisors_validate_path(advisor) if advisor.is_valid.nil? %></td>
       </tr>
     <% end %>
   </tbody>
@@ -36,5 +36,5 @@
 
 <br>
 <%= link_to 'Ranking', ranking_advisor_path %>
-<%= link_to 'New Advisor', new_advisor_path %> |
-<%= link_to 'Back', root_path, method: :get %>
+<%= link_to t('n_advisor') , new_advisor_path %> |
+<%= link_to t('back'), root_path, method: :get %>

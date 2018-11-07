@@ -15,3 +15,11 @@ es:
   u_c: 'Codigo universitario'
   semester: 'Semestre'
   admin: 'Pagina de administradores'
+  show: 'Ver'
+  edit: 'Editar'
+  destroy: 'Destruir'
+  validate: 'Validar'
+  n_advisor: 'Nuevo monitor'
+  back: 'Volver'
+  grade: 'Calificacion'
+
