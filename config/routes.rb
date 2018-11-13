@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   get 'welcome/admin'
   get 'welcome/super_admin'
+
+  # Routes for statistics' graphics
+  get 'statistics_for_advices', to: 'statistics_for_advices#index', as: 'advices_statistics'
+    
   get 'students/validate/:id', to: 'students#validate', as: 'students_validate'
   post 'students/accept/:id', to: 'students#accept', as: 'students_accept'
   post 'students/reject/:id', to: 'students#reject', as: 'students_reject'

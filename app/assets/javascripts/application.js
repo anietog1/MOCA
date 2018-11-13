@@ -18,6 +18,8 @@
 //= require turbolinks
 //= require cocoon
 //= require_tree .
+//= require chartkick
+
 $(document).ready(function() {
   $('.has-tooltip').tooltip();
   $('.has-popover').popover({
