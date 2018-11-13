@@ -47,16 +47,25 @@
     <% end %>
   </ul>
 </p>
+
+<p>  
+  <strong>Monitoria(s):</strong>
+  <ul>
+    <% @student.session_has_students.each do |session_has_student| %>
+      <li><%= session_has_student.id %></li> 
+      <%= link_to 'Survey', new_survey_path(id: session_has_student.id) %>    
+    <% end %>
+  </ul>
+</p>
+
 <div>
   <%= link_to 'Edit Profile', edit_student_path(@student), class: 'btn btn-primary text-white' %>
 </div>
-<br>
-<div class="card">
-  
-  <div class="card-header">Your Advices</div>
 
+<br>
+<div class="card">  
+  <div class="card-header">Your Advices</div>
   <div class="card-body">
-    
     <table class="table">
       <thead>
         <tr>
@@ -86,13 +95,14 @@
         <% end %>
       </tbody>
     </table>
+
     <div align="center">
       <%= button_to 'Ask New Advice', new_advice_path, class: 'btn btn-primary text-white' %>
     </div>
-    
-    </div>
   </div>
+</div>
+
 <% if current_user.kind == 1 or current_user.kind == 0 %>
-<br>
-<%= link_to 'Back', students_path, class: 'btn' %>
+  <br>
+  <%= link_to 'Back', students_path, class: 'btn' %>
 <% end %>

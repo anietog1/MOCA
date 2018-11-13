@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
   get 'welcome/admin'
-  get 'welcome/admin'
   get 'welcome/super_admin'
 
   # Routes for statistics' graphics
   get 'statistics_for_advices', to: 'statistics_for_advices#index', as: 'advices_statistics'
+
+  post 'students/:student_id/survey', to: 'surveys#create', as: 'student_survey'
+  post 'students/:student_id/survey', to: 'surveys#create', as: 'create_survey'
+   
+  post 'advisors/:advisor_id/grade', to: 'grades#update', as: 'advisor_grade'
+  get 'advisors/ranking', to: 'advisors#ranking', as: 'ranking_advisor'
 
   get 'students/validate/:id', to: 'students#validate', as: 'students_validate'
   post 'students/accept/:id', to: 'students#accept', as: 'students_accept'
@@ -22,7 +27,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
   
   devise_for :users
-  
+  resources :surveys
   resources :environments
   resources :semesters
   resources :subjects
@@ -30,14 +35,16 @@ Rails.application.routes.draw do
   resources :students
   resources :classrooms
   resources :sessions, only: [:index, :new, :create]
- 
+  
+  resources :students do
+    resource :survey, only: [:index, :show, :create]  
+  end
+
   resources :advisors do
     resource :schedule, only: [:show, :new, :create]
     resource :grade, only: [:show, :update]
   end
 
-
-  resources :surveys
   resources :downloads, only: :index
   namespace :downloads do
     get :students

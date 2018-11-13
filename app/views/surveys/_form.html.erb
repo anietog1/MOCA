@@ -10,13 +10,15 @@
   </ul>
 </div>
 <% end %>
+  <div class="field">
 
-<div class="field">
-  <%= form.label :session_has_student_id %>
-  <%= form.text_field :session_has_student_id %>
-</div>
+  
+    <%=  form.hidden_field :session_has_student_id, :value => params[:id] %>
+     
+  </div>
+
+
 <table>
-
   <tr>
     <td>In a scale from 1 to 5, being 5 the max value, quantify</td>
     <td>1</td>
