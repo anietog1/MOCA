@@ -1,30 +1,11 @@
-<div id="fields">
-
-  <h1>Bienvenido a MOCA</h1>
-
-  <% 3.times do %>
-    <br>
-  <% end %>
-
-  <h3>Página de administradores</h3>
-
-  <br>
-  <%= button_to 'Estudiantes', students_path, method: :get %>
-  <br>
-  <%= button_to 'Monitores', advisors_path, method: :get %>
-  <br>
-  <%= button_to 'Monitorías', advices_path, method: :get %>
-
-  <br>
-  <%= button_to 'Semestres', semesters_path, method: :get %>
-  <br>
-  <%= button_to 'Pregrados', undergraduates_path, method: :get %>
-  <br>
-  <%= button_to 'Materias', subjects_path, method: :get %>
-  <br>
-  <%= button_to 'Aulas', classrooms_path, method: :get %>
-  <br>
-  <%= button_to 'Entornos', environments_path, method: :get %>
-  <br>
-  <%= button_to 'Descargas', downloads_path, method: :get %>
-</div>
+  <div class="card" style="max-width: 40rem; margin: auto">
+    <div class="card-header">Welcome</div>
+    <div class="card-body">
+      <h5 class="card-title">What's MOCA?</h5>
+      <p class="card-text">
+        MOCA is a web platform develped to improve CAPAZ advices managment. Here you can register and ask for advisor to reforce
+        your learning process in diferents subjects. Also, if you want to help other students, you can register like advisor.
+      </p>
+      <%= button_to "Access",  new_user_session_path, class: 'btn btn-primary' %>
+    </div>
+  </div>

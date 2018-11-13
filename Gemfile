@@ -77,3 +77,12 @@ gem 'jquery-rails'
 
 # Cocoon for adding fields on the fly
 gem 'cocoon'
+
+# Bootstrap
+gem 'bootstrap'
+
+# Recomended gem to "automatically adds the proper vendor prefixes to your CSS"
+gem 'autoprefixer-rails'
+
+# Graphics for statistics
+gem 'chartkick'

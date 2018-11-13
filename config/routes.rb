@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  post 'advisors/:advisor_id/grade', to: 'grades#update', as: 'advisor_grade'
-  get 'advisors/ranking', to: 'advisors#ranking', as: 'ranking_advisor'
+  get 'welcome/admin'
+  get 'welcome/admin'
+  get 'welcome/super_admin'
+
+  # Routes for statistics' graphics
+  get 'statistics_for_advices', to: 'statistics_for_advices#index', as: 'advices_statistics'
 
   get 'students/validate/:id', to: 'students#validate', as: 'students_validate'
   post 'students/accept/:id', to: 'students#accept', as: 'students_accept'
@@ -13,9 +17,10 @@ Rails.application.routes.draw do
   post 'advices/create', to: 'advices#create', as: 'advice_create'
   get 'advices', to: 'advices#index', as: 'advices'
   get 'advices/new', to: 'advices#new', as: 'new_advice'
-  get 'advices/show', to: 'advices#show',as: ''
 
+  # Main page
   root 'welcome#index'
+  
   devise_for :users
   
   resources :environments
@@ -33,8 +38,6 @@ Rails.application.routes.draw do
 
 
   resources :surveys
-
-
   resources :downloads, only: :index
   namespace :downloads do
     get :students

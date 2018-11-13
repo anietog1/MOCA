@@ -1,9 +1,7 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Horario</h1>
+<h1>Schedule</h1>
 
 <div class="schedule-div">
-  <table class="schedule">
+  <table class="table">
     <thead>
       <tr>
         <th>Hora</th>
@@ -26,5 +24,5 @@
 
 <br>
 
-<%= link_to 'Registrar Horario', new_advisor_schedule_path(@advisor), method: :get %> | 
-<%= link_to 'Volver', advisor_path(@advisor) %>
+<%= link_to 'Register Schedule', new_advisor_schedule_path(@advisor), method: :get, class: 'btn' %> | 
+<%= link_to 'Back', advisor_path(@advisor), class: 'btn'%>

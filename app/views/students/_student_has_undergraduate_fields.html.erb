@@ -1,4 +1,4 @@
 <div class="nested-fields">
-  <%= f.association :undergraduate, collection: Undergraduate.order(:name), prompt: 'Elige un pregrado', label: false %>
-  <%= link_to_remove_association 'Descartar pregrado', f %>
+  <%= f.association :undergraduate, collection: Undergraduate.order(:name), prompt: 'Elige un pregrado', label: false, html: { class: 'pregrade' } %>
+  <%= link_to_remove_association 'Discard pregrade', f %>
 </div>

@@ -12,7 +12,17 @@
 //
 //= require rails-ujs
 //= require jquery
+//= require popper
+//= require bootstrap-sprockets
 //= require activestorage
 //= require turbolinks
 //= require cocoon
 //= require_tree .
+//= require chartkick
+
+$(document).ready(function() {
+  $('.has-tooltip').tooltip();
+  $('.has-popover').popover({
+    trigger: 'hover'
+  });
+});

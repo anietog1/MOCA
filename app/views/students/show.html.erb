@@ -1,52 +1,98 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Primer nombre:</strong>
+  <strong>First name:</strong>
   <%= @student.first_name %>
 </p>
 
 <p>
-  <strong>Segundo nombre:</strong>
+  <strong>Second name:</strong>
   <%= @student.middle_name %>
 </p>
 
 <p>
-  <strong>Primer apellido:</strong>
+  <strong>First surname:</strong>
   <%= @student.first_surname %>
 </p>
 
 <p>
-  <strong>Segundo apellido:</strong>
+  <strong>Second surname:</strong>
   <%= @student.second_surname %>
 </p>
 
 <p>
-  <strong>Código universitario:</strong>
+  <strong>Universiy code:</strong>
   <%= @student.university_code %>
 </p>
 
 <p>
-  <strong>Usuario universitario:</strong>
+  <strong>University username:</strong>
   <%= @student.university_username %>
 </p>
 
 <p>
-  <strong>Número telefónico:</strong>
+  <strong>Mobile phone:</strong>
   <%= @student.mobile_phone %>
 </p>
 
 <p>
-  <strong>Monitor:</strong>
+  <strong>Advisor:</strong>
   <%= @student.is_advisor %>
 </p>
-
 <p>
-  <strong>Pregrado(s):</strong>
+  <strong>Subject(s):</strong>
   <ul>
     <% @student.undergraduates.each do |undergraduate| %>
-      <li><%= undergraduate.name %></li>
+    <li><%= undergraduate.name %></li>
     <% end %>
   </ul>
 </p>
-<%= link_to 'Edit', edit_student_path(@student) %> |
-<%= link_to 'Back', students_path %>
+<div>
+  <%= link_to 'Edit Profile', edit_student_path(@student), class: 'btn btn-primary text-white' %>
+</div>
+<br>
+<div class="card">
+  
+  <div class="card-header">Your Advices</div>
+
+  <div class="card-body">
+    
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Periodo</th>
+          <th>Día</th>
+          <th>Hora</th>
+          <th>Materia</th>
+          <th>Monitor</th>
+          <th colspan="4"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @advices.each do |advice| %> 
+        <tr>
+          <td><%= advice.id %></td>
+          <td><%= advice.month.name %></td>
+          <td><%= advice.day_has_hour.day.name %></td>
+          <td><%= advice.day_has_hour.hour.name %></td>
+          <td><%= advice.subject.name unless advice.subject == nil %></td>
+          <td><%= advice.advisor.student.full_name %></td>
+          <td><%= button_to 'Cancel', "" %></td>
+          <td><%= button_to 'Answer survey' %></td>
+          <td><%= button_to 'Qualify Advisor' %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div align="center">
+      <%= button_to 'Ask New Advice', new_advice_path, class: 'btn btn-primary text-white' %>
+    </div>
+    
+    </div>
+  </div>
+<% if current_user.kind == 1 or current_user.kind == 0 %>
+<br>
+<%= link_to 'Back', students_path, class: 'btn' %>
+<% end %>
