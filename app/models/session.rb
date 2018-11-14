@@ -10,6 +10,7 @@ class Session < ApplicationRecord
   validates :month, presence: true
   validates :advisor, presence: true
   validates :day_has_hour, presence: true
+
   def formatted_name
     advisor = Advisor.find(advisor_id)
     student = Student.find(advisor.student_id)
@@ -19,5 +20,4 @@ class Session < ApplicationRecord
     if subject != nil then subject = Subject.find(subject_id).name end
     "MATERIA: #{subject}, MONITOR: #{student.full_name}, DIA: #{day}, HORA: #{hour}"
   end
-
 end
