@@ -24,8 +24,7 @@ class AdvicesController < ApplicationController
         format.json { render :index }
         else
         format.html { redirect_to current_user.student, notice: 'La monitoría fue registrada.'+ msg}
-        format.json { render :show }
-          
+        format.json { render :show }  
         end
 
       else
