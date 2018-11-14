@@ -41,7 +41,8 @@ Rails.application.routes.draw do
       resource :grade, only: [:show, :update]
     end
 
-    resources :advices, only: [:index, :new, :create]
+    resources :advices, only: [:index, :new]
+    post 'advices', to: 'advices#create', as: 'advice_create'
 
     resources :downloads, only: :index
     namespace :downloads do

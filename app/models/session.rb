@@ -12,7 +12,7 @@ class Session < ApplicationRecord
   validates :day_has_hour, presence: true
 
   def formatted_name
-    if subject? then
+    if subject
       "SUBJECT: #{subject.name}. DAY: #{day.name}. HOUR: #{hour.name}"
     else
       subjects_names = advisor.subjects.map {|subject| subject.name}
