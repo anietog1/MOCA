@@ -10,4 +10,8 @@ class Advisor < ApplicationRecord
   has_many :sessions
 
   accepts_nested_attributes_for :advisor_has_subjects, allow_destroy: true
+
+  def full_name
+    student.full_name
+  end
 end
