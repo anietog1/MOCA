@@ -19,18 +19,21 @@
   </div>
 
   <div id="pregrades_space">
-    <div>
+    <div class="field form-group">
       <%= f.simple_fields_for :advisor_has_subjects do |advisor_has_subject| %>
       <%= render 'advisor_has_subject_fields', f: advisor_has_subject %>
       <% end %>
-    </div>
-    <div>
+     </div>
+
+    <div class="field form-group">
       <%= link_to_add_association 'Add subject', f, :advisor_has_subjects %>
     </div>
   </div>
-<br>  
-    <%= f.button :submit, @title %>
+</div>
 
+<div class="actions">
+<%= f.button :submit, @title %>
+</div>
   <% end %>
   
   <% if @url != nil %>

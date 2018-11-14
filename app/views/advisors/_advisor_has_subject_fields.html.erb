@@ -1,4 +1,4 @@
 <div class="nested-fields">
-  <%= f.association :subject, collection: Subject.order(:name), prompt: 'Seleccione una materia', label: false %>
+  <%= f.association :subject, collection: Subject.order(:name), prompt: 'Seleccione una materia', label: false, html: { class: 'pregrade' } %>
   <%= link_to_remove_association 'Descartar materia', f %>
 </div>
