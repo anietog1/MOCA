@@ -86,3 +86,10 @@ gem 'autoprefixer-rails'
 
 # Graphics for statistics
 gem 'chartkick'
+
+group :development do
+  # Makes it easy to work in rails console.
+  gem 'pry-rails'
+  # Helps at managing locales
+  gem 'awesome_print'
+end

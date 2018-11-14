@@ -1,4 +1,11 @@
 class WelcomeController < ApplicationController
+  
+ before_action :set_locale
+
+  def set_locale
+    I18n.locale = params[:locale].to_sym
+  end
+  
   def index
     if user_signed_in?
       if current_user.kind == 0

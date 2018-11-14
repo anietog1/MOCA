@@ -1,6 +1,11 @@
 class AdvisorsController < ApplicationController
+  before_action :set_locale
   before_action :set_advisor, only: [:show, :edit, :update, :destroy, :validate, :accept, :reject]
   before_action :set_student, only: [:show, :edit, :accept, :reject, :validate]
+
+  def set_locale
+    I18n.locale = params[:locale].to_sym
+  end 
   # GET /advisors
   # GET /advisors.json
   def index
