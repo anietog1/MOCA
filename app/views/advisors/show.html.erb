@@ -1,3 +1,8 @@
+<% if @advisor_state == nil %>
+<p class="alert alert-warning" role="alert">You haven't been validated as monitor in our platform. It will take some days. If problems continue, please contact CAPAZ's personal.</p>
+<% elsif @advisor_state == false %>
+<p class="alert alert-warning" role="alert">Your account as monitor was rejected in our platform. Please contact CAPAZ's personal.</p>
+<% else %>
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -35,5 +40,7 @@
 <%= link_to 'Schedule', advisor_schedule_path(@advisor), method: :get %>
 
 <% if current_user.kind == 1 or current_user.kind == 0 %>
-  <%= link_to 'Back', advisors_path %>
+| <%= link_to 'Back to monitors', advisors_path %>
+<% end %>
+| <%= link_to 'View student profile', student_path(id: Student.find(@advisor.student.id)) %>
 <% end %>

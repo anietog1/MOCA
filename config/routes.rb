@@ -50,4 +50,5 @@ Rails.application.routes.draw do
     namespace :downloads do
       get :students
     end
+  end
 end

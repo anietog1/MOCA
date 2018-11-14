@@ -29,8 +29,20 @@ class StudentsController < ApplicationController
   # GET /students/1
   # GET /students/1.json
   def show
+    @student_state = true
+    if current_user.kind == 2
+      if current_user.student.is_valid == nil
+        @student_state = nil
+      elsif current_user.student.is_valid == false
+        @student_state = false
+      end
+    end
     @undergraduates = @student.student_has_undergraduates
-    @student = Student.find(current_user.student_id)
+    if current_user.kind == 0 or current_user.kind == 1
+      @student = Student.find(params[:id])
+    else
+      @student = Student.find(current_user.student_id)
+    end
     @student_advices = SessionHasStudent.where(student_id: @student.id)
     @advices = []
     @student_advices.each do |sa|
