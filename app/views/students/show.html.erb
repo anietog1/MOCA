@@ -1,3 +1,8 @@
+<% if @student_state == nil %>
+<p class="alert alert-warning" role="alert">You haven't been validated in our platform. It will take some days. If problems continue, please contact CAPAZ's personal.</p>
+<% elsif @student_state == false %>
+<p class="alert alert-warning" role="alert">Your account was rejected in our platform. Please contact CAPAZ's personal.</p>
+<% else %>
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -40,20 +45,10 @@
   <%= @student.is_advisor %>
 </p>
 <p>
-  <strong>Subject(s):</strong>
+  <strong>Undergraduate(s):</strong>
   <ul>
     <% @student.undergraduates.each do |undergraduate| %>
     <li><%= undergraduate.name %></li>
-    <% end %>
-  </ul>
-</p>
-
-<p>  
-  <strong>Monitoria(s):</strong>
-  <ul>
-    <% @student.session_has_students.each do |session_has_student| %>
-      <li><%= session_has_student.id %></li> 
-      <%= link_to 'Survey', new_survey_path(id: session_has_student.id) %>    
     <% end %>
   </ul>
 </p>
@@ -64,7 +59,7 @@
 
 <br>
 <div class="card">  
-  <div class="card-header">Your Advices</div>
+  <div class="card-header">Advices</div>
   <div class="card-body">
     <table class="table">
       <thead>
@@ -89,7 +84,8 @@
           <td><%= advice.subject.name unless advice.subject == nil %></td>
           <td><%= advice.advisor.student.full_name %></td>
           <td><%= button_to 'Cancel', "" %></td>
-          <td><%= button_to 'Answer survey' %></td>
+          <td><%= button_to 'Answer survey', new_survey_path(id: advice.id), method: :get %>
+          </td>
           <td><%= button_to 'Qualify Advisor' %></td>
         </tr>
         <% end %>
@@ -97,12 +93,16 @@
     </table>
 
     <div align="center">
-      <%= button_to 'Ask New Advice', new_advice_path, class: 'btn btn-primary text-white' %>
+      <%= button_to 'Ask New Advice', new_advice_path, class: 'btn btn-primary text-white', method: :get %>
     </div>
   </div>
 </div>
-
+<br>
+<div>
+<%= st_is_advisor() %>
 <% if current_user.kind == 1 or current_user.kind == 0 %>
-  <br>
-  <%= link_to 'Back', students_path, class: 'btn' %>
+  | <%= link_to 'Back', students_path, class: 'btn' %>
 <% end %>
+<% end %>
+</div>
+<br>

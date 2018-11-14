@@ -19,8 +19,15 @@ class AdvicesController < ApplicationController
           msg = "Quedan pocos cupos para esta monitoria."
           AdviceMailer.alert_advice_size("kaparrahe@gmail.com", @session).deliver
         end
+        if current_user.kind == 0 or current_user.kind == 1
         format.html { redirect_to advices_path, notice: 'La monitoría fue registrada.'+ msg}
         format.json { render :index }
+        else
+        format.html { redirect_to current_user.student, notice: 'La monitoría fue registrada.'+ msg}
+        format.json { render :show }
+          
+        end
+
       else
         format.html { render :new }
         format.json { render json: @shs.errors, status: :unprocessable_entity }
