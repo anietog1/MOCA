@@ -1,8 +1,22 @@
 <p id="notice"><%= notice %></p>
 
+<h1 ALIGN="center"><%= @subject.name %></h1>
+
 <p>
-  <strong>Name:</strong>
-  <%= @subject.name %>
+  <%= pie_chart Session.where(subject: @subject).joins(day_has_hour: :day).group('days.name').count,
+        title: 'Advices by day'
+  %>
+</p>
+
+<p ALIGN="center">
+  <strong>Suggestions:</strong>
+  We suggest you to make use of all the other services of the University,
+  such as the teachers hours of operations or the mathematics consulting room.
+
+  <% if @subject.suggestions %>
+    However, these items would help you:
+    <%= @subject.suggestions %>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_subject_path(@subject) %> |
