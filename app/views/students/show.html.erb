@@ -101,7 +101,8 @@
 <div>
 <%= st_is_advisor() %>
 <% if current_user.kind == 1 or current_user.kind == 0 %>
-  | <%= link_to 'Back', students_path, class: 'btn' %>
+<br>
+   <%= link_to 'Back', students_path, class: 'btn' %>
 <% end %>
 <% end %>
 </div>

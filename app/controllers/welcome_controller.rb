@@ -13,7 +13,11 @@ class WelcomeController < ApplicationController
       elsif current_user.kind == 1
         redirect_to welcome_admin_path
       elsif current_user.kind == 2
-        redirect_to student_path(id: current_user.student_id)
+        if current_user.student_id == nil
+          redirect_to new_student_path(user_id: current_user.student_id)
+        else
+          redirect_to student_path(id: current_user.student_id)
+        end
       elsif current_user.kind == 3
         redirect_to advisor_path(id: Advisor.where(student_id: current_user.student_id).first)
       end
