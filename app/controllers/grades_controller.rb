@@ -15,8 +15,13 @@ class GradesController < ApplicationController
     end
     respond_to do |format|
       if @student.update(advisor_grade: g)
-        format.html { redirect_to advisors_path, notice: 'Your qualify was successfully sent.' }
-        format.json { render :index }
+        if current_user.kind == 0 or current_user.kind == 1
+          format.html { redirect_to advisors_path, notice: 'Your qualify was successfully sent.' }
+          format.json { render :index }
+        else
+          format.html { redirect_to current_user.student, notice: 'Your qualify was successfully sent.' }
+          format.json { render :show }
+        end
       else
         format.html { render :edit }
         format.json { render json: @student.errors, status: :unprocessable_entity }
