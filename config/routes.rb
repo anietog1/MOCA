@@ -24,11 +24,7 @@ Rails.application.routes.draw do
     get 'advisors/validate/:id', to: 'advisors#validate', as: 'advisors_validate'
     post 'advisors/accept/:id', to: 'advisors#accept', as: 'advisor_accept'
     post 'advisors/reject/:id', to: 'advisors#reject', as: 'advisor_reject'
-  
-    post 'advices/create', to: 'advices#create', as: 'advice_create'
-    get 'advices', to: 'advices#index', as: 'advices'
-    get 'advices/new', to: 'advices#new', as: 'new_advice'
-    
+
     devise_for :users
     resources :surveys
     resources :environments
@@ -37,7 +33,6 @@ Rails.application.routes.draw do
     resources :undergraduates
     resources :students
     resources :classrooms
-    resources :sessions, only: [:index, :new, :create]
     
     resources :students do
       resource :survey, only: [:index, :show, :create]  
@@ -47,6 +42,9 @@ Rails.application.routes.draw do
       resource :schedule, only: [:show, :new, :create]
       resource :grade, only: [:show, :update]
     end
+
+    resources :advices, only: [:index, :new]
+    post 'advices', to: 'advices#create', as: 'advice_create'
 
     resources :downloads, only: :index
     namespace :downloads do
