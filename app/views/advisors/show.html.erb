@@ -1,8 +1,9 @@
 <% if @advisor_state == nil %>
-<p class="alert alert-warning" role="alert">You haven't been validated as monitor in our platform. It will take some days. If problems continue, please contact CAPAZ's personal.</p>
+  <p class="alert alert-warning" role="alert">You haven't been validated as monitor in our platform. It will take some days. If problems continue, please contact CAPAZ's personal.</p>
 <% elsif @advisor_state == false %>
-<p class="alert alert-warning" role="alert">Your account as monitor was rejected in our platform. Please contact CAPAZ's personal.</p>
+  <p class="alert alert-warning" role="alert">Your account as monitor was rejected in our platform. Please contact CAPAZ's personal.</p>
 <% else %>
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -16,7 +17,8 @@
 </p>
 
 <p>
-   <strong><%= t('subjects') %></strong>
+  <strong><%= t('subjects') %></strong>
+
   <ul>
     <% @advisor.subjects.each do |subject| %>
       <li><%= subject.name %></li>
@@ -24,7 +26,7 @@
   </ul>
 </p>
 
-<% if @advisor.student.advisor_grade != nil %>
+<% if @advisor.student.advisor_grade %>
   <p>
     <strong><%= t('grade') %></strong>
     <%= @advisor.student.advisor_grade %>
@@ -32,6 +34,28 @@
 <% else %>
   <p>You don't have any qualification.</p>
 <% end %>
+
+<strong>Current advices</strong>
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Periodo</th>
+      <th>Description</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <% @sessions.each do |session| %>
+    <tr>
+      <td><%= session.id %></td>
+      <td><%= session.semester.name %>, <%= session.month.name %></td>
+      <td><%= session.formatted_name %></td>
+      <td><%= link_to 'show', sessions_show_path(session) %></td>
+    </tr>
+  <% end %>
+</table>
 
 <br>
 <%= link_to 'Edit Profile', edit_advisor_path(@advisor), class: 'btn btn-primary text-white' %>

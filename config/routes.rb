@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'sessions/show'
   delete 'advices/destroy/:id', to: 'advices#destroy', as: 'advice_cancel'
 
   scope '/(:locale)', defaults: { locale: 'es' }, constraints: { locale: /es|en/ } do  

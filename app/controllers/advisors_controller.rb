@@ -24,6 +24,8 @@ class AdvisorsController < ApplicationController
         @advisor_state = false
       end
     end
+
+    @sessions = @advisor.sessions
   end
 
   def accept
