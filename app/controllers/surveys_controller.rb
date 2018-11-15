@@ -1,12 +1,20 @@
 class SurveysController < ApplicationController
-  before_action :set_survey, only: :show
+  before_action :set_survey, only: [:show, :destroy]
 
   # GET /surveys
   # GET /surveys.json
   def index
     @surveys = Survey.all
   end
+  def destroy
+    @survey.destroy
+    respond_to do |format|
+      format.html { redirect_to surveys_url, notice: 'Student was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
 
+  
   # GET /surveys/1
   # GET /surveys/1.json
   def show
@@ -34,20 +42,20 @@ class SurveysController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_survey
-      @survey = Survey.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_survey
+    @survey = Survey.find(params[:id])
+  end
 
-    def advisor_params
+  def advisor_params
     { id: params.permit(:id)[:id] }
-    end
+  end
+  
+  def survey_params
     
-    def survey_params
-      
-    end
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def form_params
-      params.require(:survey).permit(:session_has_student_id, :satisfaction, :contribution, :conditions, :domain, :clarity, :ability, :treat, :method, :fears, :impact, :comments)
-    end
+  end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def form_params
+    params.require(:survey).permit(:session_has_student_id, :satisfaction, :contribution, :conditions, :domain, :clarity, :ability, :treat, :method, :fears, :impact, :comments)
+  end
 end

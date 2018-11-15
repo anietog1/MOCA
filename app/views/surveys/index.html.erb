@@ -2,7 +2,7 @@
 
 <h1>Surveys</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Session has student</th>
@@ -14,9 +14,6 @@
       <th>Ability</th>
       <th>Treat</th>
       <th>Method</th>
-      <th>Fears</th>
-      <th>Impact</th>
-      <th>Comments</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -33,9 +30,6 @@
         <td><%= survey.ability %></td>
         <td><%= survey.treat %></td>
         <td><%= survey.method %></td>
-        <td><%= survey.fears %></td>
-        <td><%= survey.impact %></td>
-        <td><%= survey.comments %></td>
         <td><%= link_to 'Show', survey %></td>
         <td><%= link_to 'Edit', edit_survey_path(survey) %></td>
         <td><%= link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>

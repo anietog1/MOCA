@@ -37,7 +37,9 @@ class AdvicesController < ApplicationController
 
   def destroy
     @shs = SessionHasStudent.where(session_id: params[:id], student_id: params[:su]).first
+    @survey = Survey.where(session_has_student_id: @shs.id)
     @shs.destroy
+    @survey.destroy
     respond_to do |format|
       if current_user.kind == 0 or current_user.kind == 1
       format.html { redirect_to advices_path, notice: 'Advice was successfully destroyed.' }

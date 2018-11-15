@@ -60,7 +60,6 @@
   <%= @survey.comments %>
 </p>
 
-<%= link_to 'Edit', edit_survey_path(@survey) %> |
 <% if current_user.kind == 0 or current_user.kind == 1 %>
 <%= link_to 'Back', surveys_path %>
 <% else %>

@@ -12,8 +12,12 @@
 <% end %>
   <div class="field">
 
-  
+    <% if current_user.kind == 0 or current_user.kind == 1 %>
+    <%= form.label "Advice id: " %>
+   <%=   form.collection_select :session_has_student_id, SessionHasStudent.all, :id, :id %>  
+    <% else %>
     <%=  form.hidden_field :session_has_student_id, :value => params[:id] %>
+    <% end %>
      
   </div>
 
