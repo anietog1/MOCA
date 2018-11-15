@@ -14,10 +14,10 @@ class Session < ApplicationRecord
 
   def formatted_name
     if subject
-      "SUBJECT: #{subject.name}. DAY: #{day.name}. HOUR: #{hour.name}"
+      "SUBJECT: #{subject.name}. DAY: #{day.name}. HOUR: #{hour.name}. ADVISOR: #{advisor.student.full_name}"
     else
       subjects_names = advisor.subjects.map {|subject| subject.name}
-      "SUBJECTS: #{subjects_names.join(', ')}. DAY: #{day.name}. HOUR: #{hour.name}"
+      "SUBJECTS: #{subjects_names.join(', ')}. DAY: #{day.name}. HOUR: #{hour.name}. ADVISOR: #{advisor.student.full_name}"
     end
   end
 
