@@ -36,26 +36,27 @@ namespace :db do
     puts "[SUBJECTS]"
 
     subjects_list = [
-      'Calculo I',
-      'Calculo II',
-      'Calculo III',
-      'Fisica I',
-      'Fisica II',
-      'Logica',
-      'Fundamentos de programacion',
-      'Fisica I',
-      'Algebra lineal',
-      'Ingenieria de software',
-      'Proyecto integrador',
-      'Analisis textual',
-      'Practicas textuales',
-      'Estadistica',
-      'Quimica inorganica',
-      'Quimica organica',
+      ['Calculo I'],
+      ['Calculo II'],
+      ['Calculo III'],
+      ['Fisica I'],
+      ['Fisica II'],
+      ['Logica',
+       'Manuel Sierra, hours of operation: NEVER\nGeneral advisor: NONE'],
+      ['Fundamentos de programacion'],
+      ['Fisica I'],
+      ['Algebra lineal'],
+      ['Ingenieria de software'],
+      ['Proyecto integrador'],
+      ['Analisis textual'],
+      ['Practicas textuales'],
+      ['Estadistica'],
+      ['Quimica inorganica'],
+      ['Quimica organica']
     ]
 
-    subjects_list.each do |name|
-      Subject.create(name: name)
+    subjects_list.each do |name, suggestions|
+      Subject.create(name: name, suggestions: suggestions)
     end
 
     puts "[TERMS]"

@@ -161,6 +161,7 @@ ActiveRecord::Schema.define(version: 2018_11_14_142357) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "suggestions"
     t.index ["name"], name: "index_subjects_on_name", unique: true
   end
 
