@@ -18,6 +18,14 @@
   </div>
 <% end %>
 
+<strong>In case you don't find what you're searching for, we advice you to go and check the subject's main page at:</strong>
+<br>
+<%= link_to 'subjects', subjects_path %>
+
+<br>
+<br>
+<br>
+
 <% if current_user.kind == 1 or current_user.kind == 0 %>
   <%= link_to 'Back', advices_path, class: 'btn' %>
 <% else %>
