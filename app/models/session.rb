@@ -3,7 +3,8 @@ class Session < ApplicationRecord
   belongs_to :advisor
   belongs_to :day_has_hour
   belongs_to :subject, optional: true
-
+  
+  has_many :meetings
   has_many :session_has_students
   has_many :students, through: :session_has_students
 

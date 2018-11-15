@@ -1,0 +1,39 @@
+<h1>Session</h1>
+
+<h2><%= @session.formatted_name %></h2>
+<br>
+<strong>students</strong>
+
+<ul>
+  <% @session.students.each do |student| %>
+    <li><%= student.full_name %> | <%= link_to 'show', student_path(student) %></li>
+  <% end %>
+</ul>
+
+<h3>Meetings</h3>
+<table>
+  <thead><td>date</td><td>students</td></thead>
+  <tbody>
+    <% @session.meetings.each do |meeting| %>
+      <tr>
+        <td><%= meeting.date %></td>
+        <td><ul>
+          <% meeting.attendances.each do |attendance| %>
+            <li><%= attendance.student.full_name %></li>
+          <% end %>
+        </ul></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h3>Take attendance</h3>
+<%= form_with(url: take_attendance_path, html: { method: :post }, local: true) do |form| %>
+  <%= form.hidden_field :session_id, value: @session.id %>
+  <%= form.collection_select :student_id, @session.students, :id, :full_name, prompt: true %>
+  <%= form.submit %>
+<% end %>
+
+<br>
+
+<%= link_to 'back', advisor_path(@session.advisor) %>

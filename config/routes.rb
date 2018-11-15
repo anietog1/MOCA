@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'sessions/show'
   delete 'advices/destroy/:id', to: 'advices#destroy', as: 'advice_cancel'
 
+  post 'attendance_take', to: 'sessions#take_attendance', as: 'take_attendance'
   scope '/(:locale)', defaults: { locale: 'es' }, constraints: { locale: /es|en/ } do  
     # Main page
     get '/', to: 'welcome#index'
