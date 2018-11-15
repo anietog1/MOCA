@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  delete 'advices/destroy/:id', to: 'advices#destroy', as: 'advice_cancel'
+
   scope '/(:locale)', defaults: { locale: 'es' }, constraints: { locale: /es|en/ } do  
     # Main page
     get '/', to: 'welcome#index'

@@ -35,6 +35,21 @@ class AdvicesController < ApplicationController
     end
   end
 
+  def destroy
+    @shs = SessionHasStudent.where(session_id: params[:id], student_id: params[:su]).first
+    @shs.destroy
+    respond_to do |format|
+      if current_user.kind == 0 or current_user.kind == 1
+      format.html { redirect_to advices_path, notice: 'Advice was successfully destroyed.' }
+      format.json { head :no_content }
+      else
+        format.html { redirect_to current_user.student, notice: 'Advice was successfully destroyed.' }
+      format.json { head :no_content }
+      
+      end
+    end
+  end
+  
   def student_params
     { id: Student.find_by(university_code: form_params[:student_id]).id }
   end

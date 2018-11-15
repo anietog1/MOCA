@@ -83,7 +83,8 @@
           <td><%= advice.day_has_hour.hour.name %></td>
           <td><%= advice.subject.name unless advice.subject == nil %></td>
           <td><%= advice.advisor.student.full_name %></td>
-          <td><%= link_to 'Cancel', "" %></td>
+<% if current_user.kind == 2 %>
+          <td><%= link_to 'Cancel', advice_cancel_path(id: advice.id, su: @student.id), method: :delete %></td>
           <% if Survey.where(session_has_student_id: advice.id).first == nil %>
           <td><%= link_to 'Answer survey', new_survey_path(id: advice.id) %>
             <% else %>
@@ -92,6 +93,7 @@
           </td>
           <td><%= link_to 'Qualify Advisor', advisor_grade_path(advisor_id: advice.advisor.id) %></td>
         </tr>
+        <% end %>
         <% end %>
       </tbody>
     </table>
