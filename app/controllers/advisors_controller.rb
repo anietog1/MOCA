@@ -1,6 +1,12 @@
+
 class AdvisorsController < ApplicationController
+  before_action :set_locale
   before_action :set_advisor, only: [:show, :edit, :update, :destroy, :validate, :accept, :reject]
-  before_action :set_student, only: [:show, :edit, :accept, :reject, :validate]
+  before_action :set_student, only: [:show, :edit, :accept, :reject, :validate, :update]
+
+  def set_locale
+    I18n.locale = params[:locale].to_sym
+  end 
   # GET /advisors
   # GET /advisors.json
   def index
@@ -10,6 +16,14 @@ class AdvisorsController < ApplicationController
   # GET /advisors/1
   # GET /advisors/1.json
   def show
+    @advisor_state = true
+    if current_user.kind == 2
+      if @advisor.is_valid == nil
+        @advisor_state = nil
+      elsif @advisor.is_valid == false
+        @advisor_state = false
+      end
+    end
   end
 
   def accept
@@ -42,6 +56,7 @@ class AdvisorsController < ApplicationController
   # GET /advisors/new
   def new
     @advisor = Advisor.new
+    @advisor.is_valid = nil
   end
 
   # GET /advisors/1/edit
@@ -73,6 +88,7 @@ class AdvisorsController < ApplicationController
   def update
     respond_to do |format|
       if @advisor.update(advisor_params)
+        @student.save
         format.html { redirect_to @advisor, notice: 'Advisor was successfully updated.' }
         format.json { render :show, status: :ok, location: @advisor }
       else

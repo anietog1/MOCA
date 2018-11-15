@@ -1,15 +1,43 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MOCA</title>
+    <%= t('site_title')%> | <%= t('site_name')%> 
+    <% if I18n.locale == I18n.default_locale %>
+      <%= link_to "Español", { :locale=>'es' } %>
+
+    <% else %>
+     <%= link_to "English", { :locale=>'en' } %>
+
+<%end%>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!-- mobile rendering support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Statistics' graphics -->
+    <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js" %>
   </head>
 
   <body class='<%= controller.controller_name %>'>
-    <%= yield %>
+<% if current_user != nil %>
+    <% if !(current_user.kind == 2 and current_user.student_id == nil) %>
+    <%= render 'shared/navigation' %>
+    <% end %>
+<% end %>
+    <div id="main-container" class="container-fluid">
+
+      <div class="row">
+
+
+        <div class="container">
+          <!-- main content -->
+          <div id="fields">
+            <%= yield %>
+          </div>          
+        </div>
+      </div>
+    </div>
+    
   </body>
 </html>

@@ -1,34 +1,51 @@
 <% student = @student %>
 <% def content(f) %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-  <div class="form-inputs">
-    <%= f.input :first_name, label: 'Primer nombre' %>
-    <%= f.input :middle_name, label: 'Segundo nombre' %>
-    <%= f.input :first_surname, label: 'Primer apellido' %>
-    <%= f.input :second_surname, label: 'Segundo apellido' %>
-    <%= f.input :university_code, label: 'Código universitario' %>
-    <%= f.input :university_username, label: 'Usuario universitario' %>
-    <%= f.input :mobile_phone, label: 'Número telefónico' %>
+<%= f.error_notification %>
+<%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-    <strong>Pregrados</strong>
-    <br>
-    <%= f.simple_fields_for :student_has_undergraduates do |student_has_undergraduate| %>
+<div class="form-inputs">
+  <%= f.input :first_name, label: 'First name: ', label_html: { class: 'label' } %>
+
+  <%= f.input :middle_name, label: 'Second name: ', label_html: { class: 'label' } %>
+
+  <%= f.input :first_surname, label: 'Last surname: ', label_html: { class: 'label' } %>
+
+  <%= f.input :second_surname, label: 'Second surname: ', label_html: { class: 'label' } %>
+
+  <%= f.input :university_code, label: 'University code: ', label_html: { class: 'label' } %>
+
+  <%= f.input :university_username, label: 'University username: ' , label_html: { class: 'label' } %>
+
+  <%= f.input :mobile_phone, label: 'Mobile phone: ' , label_html: { class: 'label' } %>
+
+  <div class="label">
+    <strong>Pregrades:</strong>
+  </div>
+
+  <div id="pregrades_space">
+    <div class="field form-group">
+      <%= f.simple_fields_for :student_has_undergraduates do |student_has_undergraduate| %>
       <%= render 'student_has_undergraduate_fields', f: student_has_undergraduate %>
-    <% end %>
-    <%= link_to_add_association 'Agregar pregrado', f, :student_has_undergraduates %>
+      <% end %>
+    </div>
+
+    <div class="field form-group">
+      <%= link_to_add_association 'Add pregrade', f, :student_has_undergraduates %>
+    </div>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, @title %>
-  </div>
+</div>
+
+<div class="actions">
+  <%= f.button(:submit, @title) %>
+</div>
 <% end %>
 
 <% if @url != nil then %>
-<%= simple_form_for(student,url: @url, html: { method: "post" },local: true) do |f| %>
+<%= simple_form_for(student,url: @url, html: { method: "post", class: 'form-horizontal' },local: true) do |f| %>
 <% content(f) %>
 <% end %>
-  
+
 <% else %>
 
 <%= simple_form_for(student) do |f| %>

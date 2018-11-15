@@ -1,15 +1,19 @@
-<%= form_for :advice do |form| %>
-  <div class="field">
-    <%= form.label :session_id, 'Materia' %>
+<%= form_for(:advice, html: { class: 'form-group' }) do |form| %>
+<div class="field form-group">
+  <%= form.label :session_id, 'Materia' %>
+  <div class="col-sm-10">
     <%= form.collection_select :session_id, Session.all, :id, :formatted_name, prompt: 'Seleccionar' %>
   </div>
+</div>
 
-  <div class="field">
-    <%= form.label :student_university_code, 'Código del estudiante' %>
+<div class="field form-group">
+  <%= form.label :student_university_code, 'Código del estudiante' %>
+  <div class="col-sm-10">
     <%= form.text_field :student_university_code %>
   </div>
+</div>
 
-  <div class="actions">
-    <%= form.submit 'Enviar' %>
-  </div>
+<div class="actions">
+  <%= form.submit 'Enviar' %>
+</div>
 <% end %>

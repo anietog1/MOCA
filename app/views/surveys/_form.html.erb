@@ -10,13 +10,19 @@
   </ul>
 </div>
 <% end %>
+  <div class="field">
 
-<div class="field">
-  <%= form.label :session_has_student_id %>
-  <%= form.text_field :session_has_student_id %>
-</div>
+    <% if current_user.kind == 0 or current_user.kind == 1 %>
+    <%= form.label "Advice id: " %>
+   <%=   form.collection_select :session_has_student_id, SessionHasStudent.all, :id, :id %>  
+    <% else %>
+    <%=  form.hidden_field :session_has_student_id, :value => params[:id] %>
+    <% end %>
+     
+  </div>
+
+
 <table>
-
   <tr>
     <td>In a scale from 1 to 5, being 5 the max value, quantify</td>
     <td>1</td>

@@ -62,8 +62,10 @@ end
 
 puts '[ENVIRONMENT]'
 
-default_semester = { name: 'INICIO_DE_MOCA', start_date: '1999-12-29', end_date: '1999-12-29' }
+default_semester = { name: 'MOCA RULES', start_date: '1999-12-29', end_date: '1999-12-29' }
 
 Semester.create(default_semester)
 
 Environment.create(semester_id: 1, month_id: 1)
+
+User.create(email: 'root@eafit.edu.co', password: '1234567890', kind: 0)

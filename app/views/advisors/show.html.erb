@@ -1,17 +1,22 @@
+<% if @advisor_state == nil %>
+<p class="alert alert-warning" role="alert">You haven't been validated as monitor in our platform. It will take some days. If problems continue, please contact CAPAZ's personal.</p>
+<% elsif @advisor_state == false %>
+<p class="alert alert-warning" role="alert">Your account as monitor was rejected in our platform. Please contact CAPAZ's personal.</p>
+<% else %>
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Código universitario:</strong>
+  <strong><%= t('u_c') %></strong>
   <%= @advisor.student.university_code %>
 </p>
 
 <p>
-  <strong>Semestre:</strong>
+ <strong><%= t('semester') %></strong>
   <%= @advisor.semester.name %>
 </p>
 
 <p>
-  <strong>Subjects:</strong>
+   <strong><%= t('subjects') %></strong>
   <ul>
     <% @advisor.subjects.each do |subject| %>
       <li><%= subject.name %></li>
@@ -19,13 +24,23 @@
   </ul>
 </p>
 
-<p>
-  <strong>Grade:</strong>
-  <%= @advisor.student.advisor_grade %>
-</p>
+<% if @advisor.student.advisor_grade != nil %>
+  <p>
+    <strong><%= t('grade') %></strong>
+    <%= @advisor.student.advisor_grade %>
+  </p>
+<% else %>
+  <p>You don't have any qualification.</p>
+<% end %>
 
+<br>
+<%= link_to 'Edit Profile', edit_advisor_path(@advisor), class: 'btn btn-primary text-white' %>
 
-<%= link_to 'Schedule', advisor_schedule_path(@advisor), method: :get %> |
-<%= link_to 'Edit', edit_advisor_path(@advisor) %> |
-<%= link_to 'Qualify', advisor_grade_path(@advisor) %> |
-<%= link_to 'Back', advisors_path %>
+<hr>
+<%= link_to 'Schedule', advisor_schedule_path(@advisor), method: :get %>
+
+<% if current_user.kind == 1 or current_user.kind == 0 %>
+| <%= link_to 'Back to monitors', advisors_path %>
+<% end %>
+| <%= link_to 'View student profile', student_path(id: Student.find(@advisor.student.id)) %>
+<% end %>

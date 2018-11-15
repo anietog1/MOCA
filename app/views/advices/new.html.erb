@@ -1,19 +1,25 @@
-<h1>Nueva monitoría</h1>
+<h1>New advice</h1>
 
-<%= form_with(url: advice_create_path, html: { method: "post" }, local: true) do |form| %>
+<%= form_with(url: advice_create_path, html: { method: :post }, local: true) do |form| %>
   <div class="field">
-    <%= form.label :session_id, 'Materia' %>
-    <%= form.collection_select :session_id, Session.all, :id, :formatted_name, prompt: 'Seleccionar' %>
+    <%= form.label :session_id %>
+    <%= form.collection_select :session_id, @sessions, :id, :formatted_name, prompt: 'Select' %>
   </div>
 
-  <div class="field">
-    <%= form.label :student_id, 'Código del estudiante' %>
-    <%= form.text_field :student_id %>
-   </div>
+  <% if current_user.kind != 2 %>
+    <div class="field">
+      <%= form.label :student_university_code %>
+      <%= form.text_field :student_university_code %>
+    </div>
+  <% end %>
 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
 
-<%= link_to 'Volver', advices_path %>
+<% if current_user.kind == 1 or current_user.kind == 0 %>
+  <%= link_to 'Back', advices_path, class: 'btn' %>
+<% else %>
+  <%= link_to 'Back', current_user.student, class: 'btn' %>
+<% end %>

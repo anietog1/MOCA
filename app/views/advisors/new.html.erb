@@ -1,7 +1,8 @@
-<h1>Nuevo monitor</h1>
-
-<p>Recuerde que el estudiante debe estar inscrito en la plataforma antes de ser monitor</p>
+<h1>New Advisor</h1>
 
 <%= render 'form', advisor: @advisor %>
-
-<%= link_to 'Volver', advisors_path %>
+<% if current_user.kind == 0 or current_user.kind == 1 %>
+<%= link_to 'Back', advisors_path %>
+<% else %>
+<%= link_to 'Back', current_user.student %>
+<% end %>
